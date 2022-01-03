@@ -12,8 +12,12 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use(express.static(`${__dirname}/packages/app-perf-analytics-dashboard-client/build`));
 app.use('/', dashboardClient);
+
+app.use(express.static(`${__dirname}/packages/app-perf-analytics-data-provider-client/build`));
 app.use('/data-provider-client', dataProviderClient);
+
 app.use('/api', api);
 
 app.use((req, res, next) => {
