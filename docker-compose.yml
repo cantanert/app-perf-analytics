@@ -1,0 +1,6 @@
+services:
+  app-perf-analytics:
+    build: ./
+    ports: ["8080:8080"]
+    container_name: app-perf-analytics
+

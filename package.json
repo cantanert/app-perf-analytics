@@ -12,7 +12,8 @@
     "install:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm install",
     "install:all-packages":"npm run install:express && npm run install:dashboard && npm run install:provider-client",
     "build:dashboard": "cd packages/app-perf-analytics-dashboard-client && npm run build",
-    "build:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm run build"
+    "build:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm run build",
+    "build:all-packages": "npm run build:dashboard && npm run build:provider-client"
   },
   "author": "cantanert@gmail.com",
   "license": "ISC",
