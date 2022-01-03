@@ -4,8 +4,13 @@
   "description": "A complete project that measures and visualizes an end-to-end performance analytic metrics",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start:express": "nodemon server.js",
+    "start:dashboard": "cd packages/app-perf-analytics-dashboard-client && npm start",
+    "start:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm start",
+    "install:express": "npm install",
+    "install:dashboard": "cd packages/app-perf-analytics-dashboard-client && npm install",
+    "install:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm install",
+    "install:all-packages":"npm run install:express && npm run install:dashboard && npm run install:provider-client"
   },
   "author": "cantanert@gmail.com",
   "license": "ISC",
