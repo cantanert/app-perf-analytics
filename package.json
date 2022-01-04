@@ -4,14 +4,14 @@
   "description": "A complete project that measures and visualizes an end-to-end performance analytic metrics",
   "main": "index.js",
   "scripts": {
-    "start:express": "nodemon server.js",
+    "start:express": "NODE_ENV=dev nodemon server.js",
     "start:dashboard": "cd packages/app-perf-analytics-dashboard-client && npm start",
     "start:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm start",
     "install:express": "npm install",
     "install:dashboard": "cd packages/app-perf-analytics-dashboard-client && npm install",
     "install:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm install",
     "install:analytics-lib": "cd packages/perf-analytics-lib && npm install",
-    "install:all-packages":"npm run install:express && npm run install:dashboard && npm run install:provider-client && npm run install:analytics-lib",
+    "install:all-packages": "npm run install:express && npm run install:dashboard && npm run install:provider-client && npm run install:analytics-lib",
     "build:dashboard": "cd packages/app-perf-analytics-dashboard-client && npm run build",
     "build:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm run build",
     "build:analytics-lib": "cd packages/perf-analytics-lib && npm run build",
@@ -22,6 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.1",
+    "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "mongoose": "^6.1.4",
     "morgan": "^1.10.0"
