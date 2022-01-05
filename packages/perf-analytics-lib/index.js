@@ -1,4 +1,4 @@
-export const initializeAnalyticsLib = (s) => {
+export const initializeAnalyticsLib = (destinationUrl) => {
   const Enums = {
     PAINT : "paint",
     RESOURCE: "resource",
@@ -56,7 +56,7 @@ export const initializeAnalyticsLib = (s) => {
 
   document.addEventListener('visibilitychange', function logData() {
     if (document.visibilityState === 'hidden') {
-      navigator.sendBeacon(`${s}/send-metrics`, JSON.stringify(window.PerformanceMetrics));
+      navigator.sendBeacon(destinationUrl, JSON.stringify(window.PerformanceMetrics));
     }
   });
 }
