@@ -1,6 +1,7 @@
 const getMetrics = (req, res) => {
   res.status(200).json({
-    message: 'getMetrics'
+    message: 'getMetrics',
+    processEnvs: process.env
   })
 }
 
