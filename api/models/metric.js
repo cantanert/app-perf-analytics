@@ -1,12 +1,24 @@
 const mongoose = require('mongoose');
 
 const metricSchema = mongoose.Schema({
-  name: {
-    type: String,
+  ttfb: {
+    type: Number,
     required: true
   },
-  price: {
+  fcp: {
     type: Number,
+    required: true
+  },
+  domLoad: {
+    type: Number,
+    required: true
+  },
+  windowLoad: {
+    type: Number,
+    required: true
+  },
+  date: {
+    type: Date,
     required: true
   }
 });

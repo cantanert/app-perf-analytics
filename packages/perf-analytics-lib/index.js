@@ -1,21 +1,19 @@
 export const initializeAnalyticsLib = (destinationUrl) => {
   const Enums = {
     PAINT : "paint",
-    RESOURCE: "resource",
     NAVIGATION: "navigation"
   }
 
   const config = {
     entryTypes: [
       Enums.PAINT,
-      Enums.RESOURCE,
       Enums.NAVIGATION
     ]
   }
 
   let Dataset = {
+    TTFB: null,
     FCP: null,
-    RESOURCES: [],
     WINDOW_LOAD: null,
     DOM_LOAD: null
   };
@@ -30,20 +28,12 @@ export const initializeAnalyticsLib = (destinationUrl) => {
         Dataset.FCP = msToSecondsConverter(entry.startTime);
       }
     },
-    [Enums.RESOURCE]: function (entry){
-      console.log(entry);
-      Dataset.RESOURCES.push({
-        name: entry.name,
-        initiatorType: entry.initiatorType,
-        responseEnd: msToSecondsConverter(entry.responseEnd)
-      });
-    },
     [Enums.NAVIGATION]: function (entry){
+      Dataset.TTFB = msToSecondsConverter(entry.responseStart);
       Dataset.DOM_LOAD = msToSecondsConverter(entry.domComplete);
       Dataset.WINDOW_LOAD = msToSecondsConverter(entry.loadEventEnd);
     }
   }
-
 
   new PerformanceObserver((entryList) => {
     for (const entry of entryList.getEntries()) {
@@ -52,10 +42,9 @@ export const initializeAnalyticsLib = (destinationUrl) => {
     window.PerformanceMetrics = Dataset;
   }).observe(config);
 
-
-
   document.addEventListener('visibilitychange', function logData() {
     if (document.visibilityState === 'hidden') {
+      window.PerformanceMetrics.dateInfo = new Date();
       navigator.sendBeacon(destinationUrl, JSON.stringify(window.PerformanceMetrics));
     }
   });

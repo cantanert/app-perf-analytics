@@ -1,20 +1,20 @@
+const Metric = require('../api/models/metric');
+
 const getMetrics = (req, res) => {
-  res.status(200).json({
-    message: 'getMetrics',
-    processEnvs: process.env
-  })
+  const currentDate = new Date();
+  const halfHourAgo = new Date(currentDate.getTime() - 30*60000);
+
+  Metric
+    .find({date: { $gte: halfHourAgo }})
+    .exec()
+    .then((source) => {
+      res.status(200).json({
+        data: source,
+        utcFromDate: halfHourAgo,
+        utcToDate: new Date(),
+      })
+    })
 }
 
-const postMetrics = (req, res) => {
-  const query = {
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
-  };
 
-  res.status(200).json({
-    message: 'postMetrics',
-    payload: query
-  })
-}
-
-module.exports = {getMetrics, postMetrics}
+module.exports = {getMetrics}
