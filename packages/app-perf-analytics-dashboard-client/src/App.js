@@ -1,15 +1,15 @@
-
-import './App.css';
+import './App.scss';
+import MonitoringArea from "./components/MonitoringArea/MonitoringArea";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>PerfAnalytics Dashboard</h1>
-        <p>
-          Dashboard for performance analytics visualization
-        </p>
-      </header>
+    <div className="App container">
+      <Header
+        title="PerfAnalytics Dashboard"
+        subtitle="Dashboard for performance analytics visualization"
+      />
+      <MonitoringArea />
     </div>
   );
 }

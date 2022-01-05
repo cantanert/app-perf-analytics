@@ -1,0 +1,10 @@
+@import "assets/utilities";
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 20px;
+  @include pageLoadAnimation
+}
