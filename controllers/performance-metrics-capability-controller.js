@@ -9,7 +9,7 @@ const getMetrics = (req, res) => {
     .exec()
     .then((source) => {
       res.status(200).json({
-        data: source,
+        statistics: source,
         utcFromDate: halfHourAgo,
         utcToDate: new Date(),
       })

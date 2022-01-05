@@ -66,7 +66,7 @@ const mocker_payload = [
   }
 ]
 function ChartContainer(props) {
-  const {title} = props;
+  const {title, dataset, datakey} = props;
   return (
     <div
       className={classes.chartContainer}
@@ -74,7 +74,8 @@ function ChartContainer(props) {
     >
       <p data-testid="chartTitle">{title}</p>
       <Chart
-        dataset={mocker_payload}
+        dataset={dataset}
+        datakey={datakey}
         strokeColor="#0000FF"
         fillColor="#7EC8E3"
       />
