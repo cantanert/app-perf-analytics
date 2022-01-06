@@ -33,7 +33,7 @@ const SearchFilters = () => {
   }
 
   const getAnalysisHandler = () => {
-    requester.post("http://app-perf-analytics.herokuapp.com/api/performance-metrics-capability",{
+    requester.post("https://app-perf-analytics.herokuapp.com/api/performance-metrics-capability",{
       startDate,
       endDate
     }).then(() => {
