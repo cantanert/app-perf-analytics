@@ -10,6 +10,7 @@ const sendAnalytics = (req, res) => {
     fcp: params.FCP,
     domLoad: params.DOM_LOAD,
     windowLoad: params.WINDOW_LOAD,
+    resources: params.RESOURCES,
     date: params.dateInfo
   });
 
@@ -22,6 +23,7 @@ const sendAnalytics = (req, res) => {
           fcp: result.fcp,
           domLoad: result.domLoad,
           windowLoad: result.windowLoad,
+          resources: result.resources,
           date: result.date,
           id: result._id
         },

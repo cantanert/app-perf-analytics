@@ -15,4 +15,8 @@ export const metricTypes = {
     name: "Window Load",
     value: "windowLoad"
   },
+  RESOURCES: {
+    name: "Resources",
+    value: "resources"
+  }
 }

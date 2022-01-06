@@ -1,5 +1,6 @@
 import classes from "./MonitoringArea.module.scss";
 import ChartContainer from "../ChartContainer/ChartContainer";
+import SourceList from "../SourceList/SourceList";
 import Requester from "../../utils/Requester";
 import {useState, useEffect} from "react";
 import {metricTypes} from "../../enums/metricTypes";
@@ -9,13 +10,15 @@ const requester = new Requester();
 
 function MonitoringArea() {
   const [metrics, setMetrics] = useState([]);
-
+  const [isMetricsPending, setIsMetricsPending] = useState(true)
   useEffect(() => {
     requester.get('http://localhost:8080/api/performance-metrics-capability')
       .then(({data}) => {
+        setIsMetricsPending(false);
         setMetrics(data.statistics ?? []);
       })
       .catch((err) => {
+        setIsMetricsPending(false);
         console.log(err)
       })
   },[])
@@ -56,17 +59,27 @@ function MonitoringArea() {
           xAxisLabel: timeFormatter(item.date)
         }
       })
+    },
+    [metricTypes.RESOURCES.value]: function (){
+      return metrics.map((item) => {
+        return {
+          [metricTypes.RESOURCES.value] : item[metricTypes.RESOURCES.value],
+          dateInfo: item.date
+        }
+      })
     }
   }
   return (
     <div className={classes.MonitoringArea}>
       <div className={classes.MonitoringArea_Row}>
         <ChartContainer
+          isLoading={isMetricsPending}
           title={metricTypes.TTFB.name}
           dataset={getMetricsByType[metricTypes.TTFB.value]()}
           datakey={metricTypes.TTFB.value}
         />
         <ChartContainer
+          isLoading={isMetricsPending}
           title={metricTypes.FCP.name}
           dataset={getMetricsByType[metricTypes.FCP.value]()}
           datakey={metricTypes.FCP.value}
@@ -74,14 +87,21 @@ function MonitoringArea() {
       </div>
       <div className={classes.MonitoringArea_Row}>
         <ChartContainer
+          isLoading={isMetricsPending}
           title={metricTypes.DOM_LOAD.name}
           dataset={getMetricsByType[metricTypes.DOM_LOAD.value]()}
           datakey={metricTypes.DOM_LOAD.value}
         />
         <ChartContainer
+          isLoading={isMetricsPending}
           title={metricTypes.WINDOW_LOAD.name}
           dataset={getMetricsByType[metricTypes.WINDOW_LOAD.value]()}
           datakey={metricTypes.WINDOW_LOAD.value}
+        />
+      </div>
+      <div className={classes.MonitoringArea_Row}>
+        <SourceList
+          resourceList={getMetricsByType[metricTypes.RESOURCES.value]()}
         />
       </div>
     </div>

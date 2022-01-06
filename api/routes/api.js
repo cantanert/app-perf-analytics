@@ -10,6 +10,11 @@ router.get(
 );
 
 router.post(
+  '/performance-metrics-capability',
+  performanceMetricsCapabilityController.getByPostMetrics
+);
+
+router.post(
   '/send-metrics',
   sendAnalyticsController.sendAnalytics
 )

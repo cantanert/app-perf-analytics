@@ -1,0 +1,28 @@
+@import "../../assets/variables";
+
+.FilePresenter{
+  position: relative;
+  display: flex;
+  p{
+    font-size: 12px;
+    margin: 2px 10px 2px 0;
+  }
+  &_iniatorType, &_name, &_responseEnd{
+    display: flex;
+  }
+  &_iniatorType{
+    p{
+      font-weight: 900;
+    }
+  }
+  &_name{
+    p{
+      font-weight: 200;
+    }
+  }
+  &_responseEnd{
+    p{
+      font-weight: 900;
+    }
+  }
+}

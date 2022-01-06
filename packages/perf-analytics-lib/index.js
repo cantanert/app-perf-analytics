@@ -1,12 +1,14 @@
 export const initializeAnalyticsLib = (destinationUrl) => {
   const Enums = {
     PAINT : "paint",
+    RESOURCE: "resource",
     NAVIGATION: "navigation"
   }
 
   const config = {
     entryTypes: [
       Enums.PAINT,
+      Enums.RESOURCE,
       Enums.NAVIGATION
     ]
   }
@@ -15,7 +17,8 @@ export const initializeAnalyticsLib = (destinationUrl) => {
     TTFB: null,
     FCP: null,
     WINDOW_LOAD: null,
-    DOM_LOAD: null
+    DOM_LOAD: null,
+    RESOURCES: [],
   };
 
   function msToSecondsConverter(milliseconds){
@@ -27,6 +30,14 @@ export const initializeAnalyticsLib = (destinationUrl) => {
       if (entry.name === 'first-contentful-paint'){
         Dataset.FCP = msToSecondsConverter(entry.startTime);
       }
+    },
+    [Enums.RESOURCE]: function (entry){
+      Dataset.RESOURCES.push({
+        name: entry.name,
+        initiatorType: entry.initiatorType,
+        responseEnd: msToSecondsConverter(entry.responseEnd),
+        date: new Date()
+      });
     },
     [Enums.NAVIGATION]: function (entry){
       Dataset.TTFB = msToSecondsConverter(entry.responseStart);

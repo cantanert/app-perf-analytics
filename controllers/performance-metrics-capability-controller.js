@@ -16,5 +16,20 @@ const getMetrics = (req, res) => {
     })
 }
 
+const getByPostMetrics = (req, res) => {
+  Metric
+    .find({date: { $gte: halfHourAgo }})
+    .exec()
+    .then((source) => {
+      res.status(200).json({
+        statistics: source,
+        utcFromDate: halfHourAgo,
+        utcToDate: new Date(),
+      })
+    })
+}
 
-module.exports = {getMetrics}
+
+
+
+module.exports = {getMetrics, getByPostMetrics}

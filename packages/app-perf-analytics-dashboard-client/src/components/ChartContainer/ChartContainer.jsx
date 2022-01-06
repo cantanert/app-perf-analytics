@@ -66,19 +66,24 @@ const mocker_payload = [
   }
 ]
 function ChartContainer(props) {
-  const {title, dataset, datakey} = props;
+  const {title, dataset, datakey, isLoading} = props;
   return (
     <div
       className={classes.chartContainer}
       data-testid="chartContainer"
     >
       <p data-testid="chartTitle">{title}</p>
-      <Chart
-        dataset={dataset}
-        datakey={datakey}
-        strokeColor="#0000FF"
-        fillColor="#7EC8E3"
-      />
+      {isLoading
+        ? <p>Loading...</p>
+        : dataset.length
+          ? <Chart
+            dataset={dataset}
+            datakey={datakey}
+            strokeColor="#0000FF"
+            fillColor="#7EC8E3"
+          />
+          : <p>Not enough data exist.</p>
+      }
     </div>
   )
 }

@@ -17,6 +17,10 @@ const metricSchema = mongoose.Schema({
     type: Number,
     required: true
   },
+  resources: {
+    type: Array,
+    required: true,
+  },
   date: {
     type: Date,
     required: true
