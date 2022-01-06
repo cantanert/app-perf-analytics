@@ -5,6 +5,7 @@ import Requester from "../../utils/Requester";
 import {useState, useEffect} from "react";
 import {metricTypes} from "../../enums/metricTypes";
 import dayjs from "dayjs";
+import {PERFORMANCE_METRICS_CAPABILITY} from "../../enums/endpoints";
 
 const requester = new Requester();
 
@@ -12,7 +13,7 @@ function MonitoringArea() {
   const [metrics, setMetrics] = useState([]);
   const [isMetricsPending, setIsMetricsPending] = useState(true)
   useEffect(() => {
-    requester.get('https://app-perf-analytics.herokuapp.com/api/performance-metrics-capability')
+    requester.get(PERFORMANCE_METRICS_CAPABILITY)
       .then(({data}) => {
         setIsMetricsPending(false);
         setMetrics(data.statistics ?? []);

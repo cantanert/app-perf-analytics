@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useState} from "react";
 import Requester from "../../utils/Requester";
+import {PERFORMANCE_METRICS_CAPABILITY} from "../../enums/endpoints";
 
 const SearchFilters = () => {
   const requester = new Requester();
@@ -33,7 +34,7 @@ const SearchFilters = () => {
   }
 
   const getAnalysisHandler = () => {
-    requester.post("https://app-perf-analytics.herokuapp.com/api/performance-metrics-capability",{
+    requester.post(PERFORMANCE_METRICS_CAPABILITY,{
       startDate,
       endDate
     }).then(() => {
