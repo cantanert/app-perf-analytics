@@ -2,24 +2,27 @@ import classes from "./MonitoringArea.module.scss";
 import ChartContainer from "../ChartContainer/ChartContainer";
 import SourceList from "../SourceList/SourceList";
 import Requester from "../../utils/Requester";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {metricTypes} from "../../enums/metricTypes";
+import GlobalContext from "../../context/GlobalContext";
 import dayjs from "dayjs";
 import {PERFORMANCE_METRICS_CAPABILITY} from "../../enums/endpoints";
 
 const requester = new Requester();
 
 function MonitoringArea() {
-  const [metrics, setMetrics] = useState([]);
-  const [isMetricsPending, setIsMetricsPending] = useState(true)
+  const globalCtx = useContext(GlobalContext);
+  const metrics = globalCtx.statistics;
+  const isMetricsPending = globalCtx.isStatisticsPending;
+
   useEffect(() => {
     requester.get(PERFORMANCE_METRICS_CAPABILITY)
       .then(({data}) => {
-        setIsMetricsPending(false);
-        setMetrics(data.statistics ?? []);
+        globalCtx.statisticSetter(data.statistics ?? []);
+        globalCtx.isStatisticsPendingSetter(false);
       })
       .catch((err) => {
-        setIsMetricsPending(false);
+        globalCtx.isStatisticsPendingSetter(false);
         console.log(err)
       })
   },[])
@@ -70,35 +73,27 @@ function MonitoringArea() {
       })
     }
   }
+  const chartContainerTypes = [
+    metricTypes.FCP,
+    metricTypes.TTFB,
+    metricTypes.DOM_LOAD,
+    metricTypes.WINDOW_LOAD,
+  ]
   return (
     <div className={classes.MonitoringArea}>
       <div className={classes.MonitoringArea_Row}>
-        <ChartContainer
-          isLoading={isMetricsPending}
-          title={metricTypes.TTFB.name}
-          dataset={getMetricsByType[metricTypes.TTFB.value]()}
-          datakey={metricTypes.TTFB.value}
-        />
-        <ChartContainer
-          isLoading={isMetricsPending}
-          title={metricTypes.FCP.name}
-          dataset={getMetricsByType[metricTypes.FCP.value]()}
-          datakey={metricTypes.FCP.value}
-        />
-      </div>
-      <div className={classes.MonitoringArea_Row}>
-        <ChartContainer
-          isLoading={isMetricsPending}
-          title={metricTypes.DOM_LOAD.name}
-          dataset={getMetricsByType[metricTypes.DOM_LOAD.value]()}
-          datakey={metricTypes.DOM_LOAD.value}
-        />
-        <ChartContainer
-          isLoading={isMetricsPending}
-          title={metricTypes.WINDOW_LOAD.name}
-          dataset={getMetricsByType[metricTypes.WINDOW_LOAD.value]()}
-          datakey={metricTypes.WINDOW_LOAD.value}
-        />
+        {
+          chartContainerTypes.map((type, index) => {
+            return (
+              <ChartContainer
+                key={index}
+                title={type.name}
+                dataset={getMetricsByType[type.value]()}
+                datakey={type.value}
+              />
+            )
+          })
+        }
       </div>
       <div className={classes.MonitoringArea_Row}>
         <SourceList

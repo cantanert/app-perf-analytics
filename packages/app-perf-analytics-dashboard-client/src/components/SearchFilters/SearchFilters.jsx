@@ -2,12 +2,14 @@ import classes from "./SearchFilters.module.scss";
 import Button from "../Button/Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import Requester from "../../utils/Requester";
 import {PERFORMANCE_METRICS_CAPABILITY} from "../../enums/endpoints";
+import GlobalContext from "../../context/GlobalContext";
 
 const SearchFilters = () => {
   const requester = new Requester();
+  const globalCtx = useContext(GlobalContext);
 
   const currentDate = new Date();
   const halfHourAgo = new Date(currentDate.getTime() - 30*60000);
@@ -15,21 +17,15 @@ const SearchFilters = () => {
   const [startDate, setStartDate] = useState(halfHourAgo);
   const [endDate, setEndDate] = useState(currentDate);
 
-  const startDateHandler = (date) => {
-    setStartDate(date);
-  };
-
-  const endDateHandler = (date) => {
-    setEndDate(date);
-  }
-
   const clearHandler = () => {
-    setEndDate(new Date(new Date().getTime() - 30*60000));
-    setEndDate(new Date());
+    setStartDate(halfHourAgo);
+    setEndDate(currentDate);
+    globalCtx.setIsDateFilterChanged(false);
     getAnalysisHandler();
   }
 
   const submitHandler = () => {
+    !(currentDate === endDate || halfHourAgo === startDate) && globalCtx.setIsDateFilterChanged(true);
     getAnalysisHandler();
   }
 
@@ -37,8 +33,8 @@ const SearchFilters = () => {
     requester.post(PERFORMANCE_METRICS_CAPABILITY,{
       startDate,
       endDate
-    }).then(() => {
-      //TODO update store state
+    }).then(({data}) => {
+      globalCtx.statisticSetter(data.statistics ?? []);
     }).catch((err) => {
       console.log(err);
       alert(err?.data?.message);
@@ -52,7 +48,7 @@ const SearchFilters = () => {
           <p className={classes.SearchFilters_TimePicker_Title}>Start Time</p>
           <DatePicker
             selected={startDate}
-            onChange={startDateHandler}
+            onChange={(date) => setStartDate(date)}
             showTimeSelect
             timeFormat="HH:mm"
             dateFormat="dd/MM/yyyy HH:mm"
@@ -62,7 +58,7 @@ const SearchFilters = () => {
           <p className={classes.SearchFilters_TimePicker_Title}>End Time</p>
           <DatePicker
             selected={endDate}
-            onChange={endDateHandler}
+            onChange={(date) => setEndDate(date)}
             showTimeSelect
             timeFormat="HH:mm"
             dateFormat="dd/MM/yyyy HH:mm"

@@ -2,9 +2,16 @@ import classes from "./ChartContainer.module.scss";
 import Chart from "../Chart/Chart";
 import Button from "../Button/Button";
 import {NewTabRouter} from "../../utils/NewTabRouter";
+import GlobalContext from "../../context/GlobalContext";
+import {useContext} from "react";
 
 function ChartContainer(props) {
-  const {title, dataset, datakey, isLoading} = props;
+  const globalCtx = useContext(GlobalContext);
+  const isLoading = globalCtx.isStatisticsPending;
+  const isDateFiltersChanged = globalCtx.isDateFiltersChanged
+
+  const {title, dataset, datakey} = props;
+
   return (
     <div
       className={classes.chartContainer}
@@ -13,7 +20,9 @@ function ChartContainer(props) {
       <p
         className={classes.chartContainer_Title}
         data-testid="chartTitle"
-      >{title}</p>
+      >
+        {title}
+      </p>
       {isLoading
         ? <p>Loading...</p>
         : dataset.length
@@ -25,12 +34,16 @@ function ChartContainer(props) {
           />
           : <>
             <p>There is no data exist.</p>
-            <Button
-              secondary={true}
-              customClickEvent={() => NewTabRouter("https://app-perf-analytics.herokuapp.com/data-provider-client")}
-            >
-              Go to Data Provider App
-            </Button>
+            {
+              isDateFiltersChanged
+                ? "Change date range or clear filters."
+                : <Button
+                  secondary={true}
+                  customClickEvent={() => NewTabRouter("https://app-perf-analytics.herokuapp.com/data-provider-client")}
+                >
+                  Go to Data Provider App
+                </Button>
+            }
           </>
 
       }
