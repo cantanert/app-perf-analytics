@@ -7,12 +7,17 @@ function App() {
       <header className="App-header">
         <h1>DATA PROVIDER APP</h1>
         <p>This app created for providing real data to related API</p>
-        <img src={logo} className="App-logo" alt="logo" />
         <a
           href="https://app-perf-analytics.herokuapp.com"
         >
-          ◄ Back To <strong>PerfAnalytics Dashboard App</strong>
+          ⬅ <span> Click for back to <strong>PerfAnalytics Dashboard App</strong></span>
         </a>
+        <a
+          href="https://app-perf-analytics.herokuapp.com/data-provider-client"
+        >
+          🔄 <span> Click to refresh for <strong>More Analytics Data</strong></span>
+        </a>
+        <img src={logo} className="App-logo" alt="logo" />
       </header>
     </div>
   );

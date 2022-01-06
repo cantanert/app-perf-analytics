@@ -31,10 +31,14 @@ p{
 a{
   color: #fff;
   font-weight: 200;
+  text-decoration: none;
 }
 
 a strong{
   font-weight: 900;
+}
+a span{
+  text-decoration: underline;
 }
 
 @keyframes App-logo-spin {
@@ -45,3 +49,26 @@ a strong{
     transform: rotate(360deg);
   }
 }
+
+
+@media screen and (max-width: 576px){
+  header{
+    padding: 0 10px;
+  }
+  h1{
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 0;
+  }
+  a{
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  p{
+    margin: 0 0 50px 0;
+  }
+  .App-logo{
+    margin-top: 25px;
+  }
+}
+

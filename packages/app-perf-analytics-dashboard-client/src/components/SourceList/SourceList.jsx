@@ -23,7 +23,7 @@ const SourceList = (props) => {
 
   return (
     <div className={classes.SourceList}>
-      <p className={classes.SourceList_Title}>Resource Timings</p>
+      <p className={classes.SourceList_Title}>Resource Timing Logs</p>
       <div className={classes.SourceList_ItemWrapper}>
         {resourceList.length
           ? sourceListRenderer

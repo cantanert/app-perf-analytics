@@ -1,4 +1,5 @@
-@import "../../assets/variables";
+@import "src/assets/variables";
+@import "src/assets/layout";
 
 .FilePresenter{
   position: relative;
@@ -24,5 +25,17 @@
     p{
       font-weight: 900;
     }
+  }
+}
+
+@media screen and (max-width: $width-small-min){
+  .FilePresenter{
+    flex-direction: column;
+    border-left: 3px solid $theme-4;
+    padding: 3px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

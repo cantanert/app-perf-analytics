@@ -1,3 +1,5 @@
+@import "src/assets/layout";
+
 .SearchFilters{
   position: relative;
   display: flex;
@@ -26,5 +28,40 @@
   &_SubmitButtonWrapper{
     flex: 1;
     padding: 0 5px;
+  }
+}
+
+@media screen and (max-width: $width-medium-min){
+  .SearchFilters{
+    flex-direction: column;
+    margin: 0;
+    font-size: 14px;
+    &_TimePicker{
+      width: 100%;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      p{
+        width: 150px;
+        font-size: 16px;
+        &::after {
+          content: " : ";
+        }
+      }
+
+    }
+    &_TimePickerWrapper{
+      flex-direction: column;
+      width: 100%;
+    }
+    &_ClearButtonWrapper{
+      margin-top: 10px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    &_SubmitButtonWrapper{
+      width: 100%;
+      margin-bottom: 10px;
+    }
   }
 }

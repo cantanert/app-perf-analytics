@@ -1,5 +1,6 @@
 @import "../../assets/variables";
 @import "../../assets/utilities";
+@import "../../assets/layout";
 
 .SourceList{
   position: relative;
@@ -43,5 +44,17 @@
   &_ItemTitle{
     text-align: start;
     margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: $width-small-min){
+  .SourceList{
+    &_Title{
+      font-size: 14px;
+    }
+    &_ItemTitle{
+      font-size: 14px!important;
+      font-weight: 700;
+    }
   }
 }

@@ -1,3 +1,5 @@
+@import "src/assets/layout";
+
 .MonitoringArea{
   flex: 1;
   position: relative;
@@ -11,5 +13,12 @@
     justify-content: space-around;
     flex-wrap: wrap;
   }
+}
 
+@media screen and (max-width: $width-small-min){
+  .MonitoringArea{
+    &_Row{
+      justify-content: center;
+    }
+  }
 }
