@@ -12,15 +12,18 @@ const SourceList = (props) => {
   const sourceListRenderer = resourceList.map((item) => {
       return (
         <>
-          <p className={classes.SourceList_title}>{dayFormatter(item.dateInfo)}</p>
-          <SourceListItem resource={item.resources} />
+          <p className={classes.SourceList_ItemTitle}>{dayFormatter(item.dateInfo)}</p>
+          <SourceListItem resource={item.resources}/>
         </>
       )
   });
 
   return (
     <div className={classes.SourceList}>
-      {sourceListRenderer}
+      <p className={classes.SourceList_Title}>Resource Timings</p>
+      <div className={classes.SourceList_ItemWrapper}>
+        {resourceList.length ? sourceListRenderer : <p>There is no data exist.</p> }
+      </div>
     </div>
   )
 }

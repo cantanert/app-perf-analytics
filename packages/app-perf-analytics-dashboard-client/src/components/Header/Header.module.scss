@@ -1,5 +1,15 @@
 .Header{
+  display: flex;
+  justify-content: center;
+  &_ItemsWrapper{
+    width: fit-content;
+  }
   h1, p{
     margin: 0;
+  }
+  p{
+    font-size: 14px;
+    text-align: start;
+    margin-top: -16px;
   }
 }

@@ -1,8 +1,40 @@
+@import "../../assets/variables";
+@import "../../assets/utilities";
+
 .SourceList{
   position: relative;
   width: 100%;
   margin-top: 50px;
-  &_title{
+  margin-bottom: 25px;
+  &_ItemWrapper{
+    height: 60vh;
+    overflow: auto;
+    &::-webkit-scrollbar{
+      width: 6px
+    }
+
+    &::-webkit-scrollbar-track{
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 6px $theme-4
+    }
+
+    &::-webkit-scrollbar-thumb{
+      background-color: $theme-4;
+      border-radius: 6px;
+
+    }
+    p{
+      text-align: start;
+      font-size: 12px;
+    }
+  }
+  &_Title{
+    text-align: start;
+    border-bottom: 1px solid $theme-4;
+    font-size: 16px;
+    font-weight: 900;
+  }
+  &_ItemTitle{
     text-align: start;
     margin-bottom: 0;
   }
