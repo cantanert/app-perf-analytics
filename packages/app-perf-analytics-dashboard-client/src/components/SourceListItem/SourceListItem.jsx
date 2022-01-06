@@ -4,8 +4,12 @@ import FilePresenter from "../FilePresenter/FilePresenter";
 const SourceListItem = (props) => {
   const {resource} = props;
 
-  const resourceRenderer = resource.map((item) => {
-    return ( <FilePresenter fileData={item} />)
+  const resourceRenderer = resource.map((item, index) => {
+    return (
+      <FilePresenter
+        fileData={item}
+        key={index}
+      />)
   })
 
   return (

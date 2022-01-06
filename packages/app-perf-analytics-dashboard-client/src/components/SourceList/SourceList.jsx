@@ -11,11 +11,17 @@ const SourceList = (props) => {
     return dayjs(date).format('DD/MM/YYYY HH:mm:ss')
   }
 
-  const sourceListRenderer = resourceList.map((item) => {
+  const sourceListRenderer = resourceList.map((item, index) => {
       return (
         <>
-          <p className={classes.SourceList_ItemTitle}>{dayFormatter(item.dateInfo)}</p>
-          <SourceListItem resource={item.resources}/>
+          <p
+            key={index}
+            className={classes.SourceList_ItemTitle}>
+            {dayFormatter(item.dateInfo)}
+          </p>
+          <SourceListItem
+            resource={item.resources}
+          />
         </>
       )
   });
@@ -34,7 +40,6 @@ const SourceList = (props) => {
               customClickEvent={() => NewTabRouter('https://app-perf-analytics.herokuapp.com/data-provider-client')}
             >Go to Data Provider App</Button>
           </>
-
         }
       </div>
     </div>
