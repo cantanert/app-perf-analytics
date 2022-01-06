@@ -12,7 +12,7 @@ function MonitoringArea() {
   const [metrics, setMetrics] = useState([]);
   const [isMetricsPending, setIsMetricsPending] = useState(true)
   useEffect(() => {
-    requester.get('http://localhost:8080/api/performance-metrics-capability')
+    requester.get('http://app-perf-analytics.herokuapp.com/api/performance-metrics-capability')
       .then(({data}) => {
         setIsMetricsPending(false);
         setMetrics(data.statistics ?? []);

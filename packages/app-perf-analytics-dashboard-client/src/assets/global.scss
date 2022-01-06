@@ -1,4 +1,21 @@
+@import "variables";
+
 .app-title{
   font-size: 16px;
   margin-top: 0;
+}
+
+.react-datepicker-wrapper{
+  display: flex;
+  align-items: center;
+  input{
+    font-family: inherit;
+    background: transparent;
+    color: $theme-4;
+    border: 1px solid $theme-4;
+    padding: 5px 10px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 2px;
+  }
 }

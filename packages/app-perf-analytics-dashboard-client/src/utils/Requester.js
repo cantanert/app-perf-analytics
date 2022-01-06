@@ -5,12 +5,12 @@ export default class Requester{
   constructor() {}
 
   async post(path, body = {}, config){
-    axios.post(path, body, config)
+    return axios.post(path, body, config)
       .then((res) => {
         return Promise.resolve(res);
       })
-      .catch((err) => {
-        return Promise.reject(err);
+      .catch(({response}) => {
+        return Promise.reject(response);
       })
   }
 

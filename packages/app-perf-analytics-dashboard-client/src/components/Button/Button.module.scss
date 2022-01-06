@@ -1,0 +1,18 @@
+@import "src/assets/variables";
+
+.Button{
+  position: relative;
+  background-color: $theme-4;
+  border: 1px solid $theme-4;
+  color: $theme-1;
+  font: inherit;
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-weight: 200;
+  width: 100%;
+  &_Secondary{
+    background-color: transparent;
+    border: 1px solid $theme-4;
+    color: $theme-4;
+  }
+}

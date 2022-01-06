@@ -1,0 +1,30 @@
+.SearchFilters{
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  margin: 25px;
+  &_TimePicker{
+    flex: 1;
+    padding: 0 5px;
+    &_Title{
+      font: inherit;
+      font-size: 12px;
+      font-weight: 200;
+      margin: 0;
+      text-align: start;
+    }
+  }
+  &_TimePickerWrapper{
+    display: flex;
+    justify-content: space-around;
+    flex: 2;
+  }
+  &_ClearButtonWrapper{
+    flex: 1;
+    padding: 0 5px;
+  }
+  &_SubmitButtonWrapper{
+    flex: 1;
+    padding: 0 5px;
+  }
+}
