@@ -1,5 +1,7 @@
 import classes from "./ChartContainer.module.scss";
 import Chart from "../Chart/Chart";
+import Button from "../Button/Button";
+import {NewTabRouter} from "../../utils/NewTabRouter";
 
 function ChartContainer(props) {
   const {title, dataset, datakey, isLoading} = props;
@@ -21,7 +23,16 @@ function ChartContainer(props) {
             strokeColor="#0000FF"
             fillColor="#7EC8E3"
           />
-          : <p>There is no data exist.</p>
+          : <>
+            <p>There is no data exist.</p>
+            <Button
+              secondary={true}
+              customClickEvent={() => NewTabRouter("https://app-perf-analytics.herokuapp.com/data-provider-client")}
+            >
+              Go to Data Provider App
+            </Button>
+          </>
+
       }
     </div>
   )

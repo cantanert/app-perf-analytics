@@ -1,6 +1,8 @@
 import classes from "./SourceList.module.scss";
 import SourceListItem from "../SourceListItem/SourceListItem";
 import dayjs from "dayjs";
+import Button from "../Button/Button";
+import {NewTabRouter} from "../../utils/NewTabRouter";
 
 const SourceList = (props) => {
   const {resourceList} = props;
@@ -18,11 +20,22 @@ const SourceList = (props) => {
       )
   });
 
+
   return (
     <div className={classes.SourceList}>
       <p className={classes.SourceList_Title}>Resource Timings</p>
       <div className={classes.SourceList_ItemWrapper}>
-        {resourceList.length ? sourceListRenderer : <p>There is no data exist.</p> }
+        {resourceList.length
+          ? sourceListRenderer
+          : <>
+            <p>There is no data exist.</p>
+            <Button
+              secondary={true}
+              customClickEvent={() => NewTabRouter('https://app-perf-analytics.herokuapp.com/data-provider-client')}
+            >Go to Data Provider App</Button>
+          </>
+
+        }
       </div>
     </div>
   )

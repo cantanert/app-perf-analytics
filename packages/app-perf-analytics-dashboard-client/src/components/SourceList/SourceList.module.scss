@@ -6,6 +6,7 @@
   width: 100%;
   margin-top: 50px;
   margin-bottom: 25px;
+  text-align: left;
   &_ItemWrapper{
     height: 60vh;
     overflow: auto;
@@ -26,6 +27,11 @@
     p{
       text-align: start;
       font-size: 12px;
+    }
+    button{
+      font-weight: 300;
+      font-size: 12px;
+      width: fit-content;
     }
   }
   &_Title{

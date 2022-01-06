@@ -1,6 +1,7 @@
 @import "src/assets/variables";
 
 .Button{
+  cursor: pointer;
   position: relative;
   background-color: $theme-4;
   border: 1px solid $theme-4;
@@ -14,5 +15,17 @@
     background-color: transparent;
     border: 1px solid $theme-4;
     color: $theme-4;
+    &:hover{
+      opacity: 0.5;
+    }
+    &:active{
+      opacity: 0.8;
+    }
+  }
+  &:hover{
+    opacity: 0.5;
+  }
+  &:active{
+    opacity: 0.8;
   }
 }
