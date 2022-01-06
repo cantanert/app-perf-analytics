@@ -5,8 +5,10 @@ import ChartContainer from "../ChartContainer";
 const title = "Lorem Ipsum";
 
 beforeEach(() => {
-  const {debug} = render(<ChartContainer title={title} />);
-  debug();
+  render(<ChartContainer
+    title={title}
+    dataset={[]}
+  />);
 })
 
 test("ChartContainer component has p element with title text", () => {
