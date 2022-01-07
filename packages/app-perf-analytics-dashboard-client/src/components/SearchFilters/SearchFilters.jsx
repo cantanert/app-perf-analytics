@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 
 import {
   FILTERS_HAS_NO_CHANGE,
-  END_DATE_MUST_BE_BEFORE_START_DATE
+  SMT_WENT_WRONG
 } from "../../enums/messages";
 
 const requester = new Requester();
@@ -64,8 +64,7 @@ const SearchFilters = () => {
     }).then(({data}) => {
       statisticSetter(data.statistics ?? []);
     }).catch((err) => {
-      console.log(err);
-      toast.error(END_DATE_MUST_BE_BEFORE_START_DATE);
+      toast.error(err?.data?.message ?? SMT_WENT_WRONG);
     }).finally(() => {
       isStatisticsPendingSetter(false);
     })

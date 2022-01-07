@@ -1,3 +1,4 @@
+const Messages = require('../enums/messages');
 const Metric = require('../api/models/metric');
 
 const getMetrics = (req, res) => {
@@ -24,11 +25,11 @@ const getByPostMetrics = (req, res) => {
   const {startDate, endDate} = params;
   if (Date.parse(startDate) > Date.parse(endDate)){
     res.status(400).json({
-      message: "ERROR : End date must be later than start date."
+      message: Messages.END_DATE_MUST_BE_LATER_THAN_START
     });
   } else if(Date.parse(endDate) > Date.parse(new Date())){
     res.status(400).json({
-      message: "ERROR : End date cannot be later than current date"
+      message: Messages.END_DATE_CANNOT_BE_BEFORE_NOW
     });
   } else {
     Metric

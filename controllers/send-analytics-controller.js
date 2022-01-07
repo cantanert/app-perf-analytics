@@ -1,4 +1,5 @@
 const Metric = require('../api/models/metric');
+const Messages = require('../enums/messages');
 
 const sendAnalytics = (req, res) => {
   const params = typeof req.body === 'string'
@@ -17,7 +18,7 @@ const sendAnalytics = (req, res) => {
   metric.save()
     .then((result) => {
       res.status(201).json({
-        message: "Metric successfully saved!",
+        message: Messages.METRIC_SUCCESSFULLY_SAVED,
         savedMetric: {
           ttfb: result.ttfb,
           fcp: result.fcp,
