@@ -1,1 +1,1 @@
-export const PERFORMANCE_METRICS_CAPABILITY = "/api/performance-metrics-capability";
+export const PERFORMANCE_METRICS_QUERY = "/api/performance-metrics-query";

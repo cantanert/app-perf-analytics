@@ -1,22 +1,22 @@
 const express = require('express');
 const router = express.Router();
-
-const performanceMetricsCapabilityService = require('../services/performance-metrics-capability-controller');
-const sendAnalyticsService = require('../services/send-analytics-controller')
+const Endpoints = require('../../enums/endpoints');
+const performanceMetricsQueryService = require('../services/performance-metrics-query-service');
+const performanceMetricsCapabilityService = require('../services/performance-metrics-capability-service')
 
 router.get(
-  '/performance-metrics-capability',
-  performanceMetricsCapabilityService.getMetrics
+  Endpoints.PERFORMANCE_METRICS_QUERY,
+  performanceMetricsQueryService.getMetrics
 );
 
 router.post(
-  '/performance-metrics-capability',
-  performanceMetricsCapabilityService.getByPostMetrics
+  Endpoints.PERFORMANCE_METRICS_QUERY,
+  performanceMetricsQueryService.getByPostMetrics
 );
 
 router.post(
-  '/send-metrics',
-  sendAnalyticsService.sendAnalytics
+  Endpoints.PERFORMANCE_METRICS_CAPABILITY,
+  performanceMetricsCapabilityService.sendAnalytics
 )
 
 

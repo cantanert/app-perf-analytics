@@ -1,4 +1,4 @@
-const notFound = (error, req, res, next) => {
+const internalServerError = (error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
     error: {
@@ -8,4 +8,4 @@ const notFound = (error, req, res, next) => {
 }
 
 
-module.exports = {notFound}
+module.exports = {internalServerError}

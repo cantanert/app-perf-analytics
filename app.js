@@ -4,6 +4,7 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const Messages = require('./enums/messages')
 
 async function main() {
   await mongoose.connect(`mongodb+srv://${process.env.MONGO_ATLAS_USERNAME}:${process.env.MONGO_ATLAS_PASSWORD}@${process.env.MONGO_ATLAS_ADDRESS}`);
@@ -15,12 +16,12 @@ main()
 
 
 
-const dashboardClientService = require('./api/routes/dashboard-client-service');
-const dataProviderClientService = require('./api/routes/data-provier-client-service');
-const perfAnalyticsLibService = require('./api/routes/perf-analytics-lib-service');
-
-const api = require('./api/routes/api');
-const notFoundController = require('./controllers/not-found-controller')
+const dashboardClientController = require('./api/controllers/dashboard-client-service');
+const dataProviderClientController = require('./api/controllers/data-provier-client-service');
+const perfAnalyticsLibController = require('./api/controllers/perf-analytics-lib-service');
+const apiController = require('./api/controllers/api');
+const internalServerErrorController = require('./api/services/internal-server-error-service')
+const notFoundController = require('./api/services/not-found-service')
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -28,21 +29,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.text());
 
 app.use(express.static(`${__dirname}/packages/app-perf-analytics-dashboard-client/build`));
-app.use('/', dashboardClientService);
+app.use('/', dashboardClientController);
 
 app.use(express.static(`${__dirname}/packages/app-perf-analytics-data-provider-client/build`));
-app.use('/data-provider-client', dataProviderClientService);
+app.use('/data-provider-client', dataProviderClientController);
 
-app.use('/perf-analytics-lib.js',perfAnalyticsLibService);
+app.use('/perf-analytics-lib.js',perfAnalyticsLibController);
 
-app.use('/api', api);
+app.use('/api', apiController);
 
-app.use((req, res, next) => {
-  const error = new Error('404 - Not Found');
-  error.status = 404;
-  next(error);
-});
+app.use(notFoundController);
 
-app.use(notFoundController.notFound);
+app.use(internalServerErrorController.internalServerError);
 
 module.exports = app;

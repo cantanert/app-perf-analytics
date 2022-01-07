@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useContext, useEffect, useState} from "react";
 import Requester from "../../utils/Requester";
-import {PERFORMANCE_METRICS_CAPABILITY} from "../../enums/endpoints";
+import {PERFORMANCE_METRICS_QUERY} from "../../enums/endpoints";
 import GlobalContext from "../../context/GlobalContext";
 import { toast } from 'react-toastify';
 

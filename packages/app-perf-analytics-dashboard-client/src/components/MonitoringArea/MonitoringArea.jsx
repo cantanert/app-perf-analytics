@@ -6,7 +6,7 @@ import {useEffect, useContext} from "react";
 import {metricTypes} from "../../enums/metricTypes";
 import GlobalContext from "../../context/GlobalContext";
 import dayjs from "dayjs";
-import {PERFORMANCE_METRICS_CAPABILITY} from "../../enums/endpoints";
+import {PERFORMANCE_METRICS_QUERY} from "../../enums/endpoints";
 
 const requester = new Requester();
 

@@ -23,7 +23,12 @@ const getByPostMetrics = (req, res) => {
     : req.body;
 
   const {startDate, endDate} = params;
-  if (Date.parse(startDate) > Date.parse(endDate)){
+
+  if (startDate === null || startDate === undefined || endDate === null || endDate === undefined){
+    res.status(400).json({
+      message: Messages.START_AND_END_DATE_MUST_BE_VALID
+    });
+  } else if (Date.parse(startDate) > Date.parse(endDate)){
     res.status(400).json({
       message: Messages.END_DATE_MUST_BE_LATER_THAN_START
     });

@@ -16,19 +16,22 @@
     "build:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm run build",
     "build:analytics-lib": "cd packages/perf-analytics-lib && npm run build",
     "build:all-packages": "npm run build:dashboard && npm run build:provider-client && npm run build:analytics-lib",
-    "test": "cd packages/app-perf-analytics-dashboard-client && npm run test && cd ../app-perf-analytics-data-provider-client && npm run test"
+    "test": "jest --verbose ./__tests__ && cd packages/app-perf-analytics-dashboard-client && npm run test && cd ../app-perf-analytics-data-provider-client && npm run test"
   },
   "author": "cantanert@gmail.com",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
     "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "mongoose": "^6.1.4",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "jest": "^27.4.7",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.1.6"
   }
 }
