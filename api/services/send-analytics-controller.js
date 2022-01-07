@@ -1,5 +1,5 @@
-const Metric = require('../api/models/metric');
-const Messages = require('../enums/messages');
+const Metric = require('../models/metric');
+const Messages = require('../../enums/messages');
 
 const sendAnalytics = (req, res) => {
   const params = typeof req.body === 'string'

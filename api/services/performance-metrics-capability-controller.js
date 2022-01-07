@@ -1,5 +1,5 @@
-const Messages = require('../enums/messages');
-const Metric = require('../api/models/metric');
+const Messages = require('../../enums/messages');
+const Metric = require('../models/metric');
 
 const getMetrics = (req, res) => {
   const currentDate = new Date();
