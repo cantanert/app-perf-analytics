@@ -58,7 +58,7 @@ const SearchFilters = () => {
 
   const getAnalysisHandler = () => {
     isStatisticsPendingSetter(true);
-    requester.post(PERFORMANCE_METRICS_CAPABILITY,{
+    requester.post(PERFORMANCE_METRICS_QUERY,{
       startDate,
       endDate
     }).then(({data}) => {

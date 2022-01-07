@@ -18,7 +18,7 @@ function MonitoringArea() {
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    requester.get(PERFORMANCE_METRICS_CAPABILITY)
+    requester.get(PERFORMANCE_METRICS_QUERY)
       .then(({data}) => {
         statisticSetter(data.statistics ?? []);
         isStatisticsPendingSetter(false);
