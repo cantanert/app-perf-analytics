@@ -2,42 +2,73 @@ import classes from "./SearchFilters.module.scss";
 import Button from "../Button/Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import Requester from "../../utils/Requester";
 import {PERFORMANCE_METRICS_CAPABILITY} from "../../enums/endpoints";
 import GlobalContext from "../../context/GlobalContext";
+import { toast } from 'react-toastify';
+
+import {
+  FILTERS_HAS_NO_CHANGE,
+  END_DATE_MUST_BE_BEFORE_START_DATE
+} from "../../enums/messages";
+
+const requester = new Requester();
 
 const SearchFilters = () => {
-  const requester = new Requester();
-  const globalCtx = useContext(GlobalContext);
+  const {
+    initialStartDate,
+    startDate,
+    initialEndDate,
+    endDate,
+    isDateFiltersChanged,
+    statisticSetter,
+    startDateSetter,
+    endDateSetter,
+    isStatisticsPendingSetter
+  } = useContext(GlobalContext);
 
-  const currentDate = new Date();
-  const halfHourAgo = new Date(currentDate.getTime() - 30*60000);
+  const [isClearFilterAction, setIsClearFilterAction] = useState(false);
 
-  const [startDate, setStartDate] = useState(halfHourAgo);
-  const [endDate, setEndDate] = useState(currentDate);
+
+  useEffect(() => {
+    if (isClearFilterAction && isDateFiltersChanged){
+      getAnalysisHandler();
+      setIsClearFilterAction(false);
+    }
+  },[isClearFilterAction])
 
   const clearHandler = () => {
-    setStartDate(halfHourAgo);
-    setEndDate(currentDate);
-    globalCtx.setIsDateFilterChanged(false);
-    getAnalysisHandler();
+    if (isDateFiltersChanged){
+      startDateSetter(initialStartDate);
+      endDateSetter(initialEndDate);
+      setIsClearFilterAction(true);
+    } else {
+      toast.warn(FILTERS_HAS_NO_CHANGE);
+    }
   }
 
   const submitHandler = () => {
-    !(currentDate === endDate || halfHourAgo === startDate) && globalCtx.setIsDateFilterChanged(true);
-    getAnalysisHandler();
+    debugger;
+    if (isDateFiltersChanged){
+      getAnalysisHandler();
+    } else {
+      toast.warn(FILTERS_HAS_NO_CHANGE);
+    }
   }
 
   const getAnalysisHandler = () => {
+    isStatisticsPendingSetter(true);
     requester.post(PERFORMANCE_METRICS_CAPABILITY,{
       startDate,
       endDate
     }).then(({data}) => {
-      globalCtx.statisticSetter(data.statistics ?? []);
+      statisticSetter(data.statistics ?? []);
     }).catch((err) => {
       console.log(err);
-      alert(err?.data?.message);
+      toast.error(END_DATE_MUST_BE_BEFORE_START_DATE);
+    }).finally(() => {
+      isStatisticsPendingSetter(false);
     })
   }
 
@@ -48,7 +79,7 @@ const SearchFilters = () => {
           <p className={classes.SearchFilters_TimePicker_Title}>Start Time</p>
           <DatePicker
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) => startDateSetter(date)}
             showTimeSelect
             timeFormat="HH:mm"
             dateFormat="dd/MM/yyyy HH:mm"
@@ -58,7 +89,7 @@ const SearchFilters = () => {
           <p className={classes.SearchFilters_TimePicker_Title}>End Time</p>
           <DatePicker
             selected={endDate}
-            onChange={(date) => setEndDate(date)}
+            onChange={(date) => endDateSetter(date)}
             showTimeSelect
             timeFormat="HH:mm"
             dateFormat="dd/MM/yyyy HH:mm"

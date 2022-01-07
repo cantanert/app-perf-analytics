@@ -4,13 +4,19 @@ import Button from "../Button/Button";
 import {NewTabRouter} from "../../utils/NewTabRouter";
 import GlobalContext from "../../context/GlobalContext";
 import {useContext} from "react";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import {
+  CHANGE_DATES_OR_CLEAR_FILTER,
+  NO_DATA_EXIST
+} from "../../enums/messages";
 
 function ChartContainer(props) {
-  const globalCtx = useContext(GlobalContext);
-  const isLoading = globalCtx.isStatisticsPending;
-  const isDateFiltersChanged = globalCtx.isDateFiltersChanged
-
   const {title, dataset, datakey} = props;
+
+  const {
+    isStatisticsPending,
+    isDateFiltersChanged
+  } = useContext(GlobalContext);
 
   return (
     <div
@@ -23,8 +29,8 @@ function ChartContainer(props) {
       >
         {title}
       </p>
-      {isLoading
-        ? <p>Loading...</p>
+      {isStatisticsPending
+        ? <LoadingSpinner />
         : dataset.length
           ? <Chart
             dataset={dataset}
@@ -33,10 +39,10 @@ function ChartContainer(props) {
             fillColor="#7EC8E3"
           />
           : <>
-            <p>There is no data exist.</p>
+            <p>{NO_DATA_EXIST}</p>
             {
               isDateFiltersChanged
-                ? "Change date range or clear filters."
+                ? CHANGE_DATES_OR_CLEAR_FILTER
                 : <Button
                   secondary={true}
                   customClickEvent={() => NewTabRouter("https://app-perf-analytics.herokuapp.com/data-provider-client")}

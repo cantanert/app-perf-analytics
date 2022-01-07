@@ -3,9 +3,15 @@ import SourceListItem from "../SourceListItem/SourceListItem";
 import dayjs from "dayjs";
 import Button from "../Button/Button";
 import {NewTabRouter} from "../../utils/NewTabRouter";
+import GlobalContext from "../../context/GlobalContext";
+import {useContext} from "react";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import {NO_DATA_EXIST} from "../../enums/messages";
 
 const SourceList = (props) => {
   const {resourceList} = props;
+
+  const {isStatisticsPending} = useContext(GlobalContext);
 
   const dayFormatter = (date) => {
     return dayjs(date).format('DD/MM/YYYY HH:mm:ss')
@@ -31,15 +37,17 @@ const SourceList = (props) => {
     <div className={classes.SourceList}>
       <p className={classes.SourceList_Title}>Resource Timing Logs</p>
       <div className={classes.SourceList_ItemWrapper}>
-        {resourceList.length
-          ? sourceListRenderer
-          : <>
-            <p>There is no data exist.</p>
-            <Button
-              secondary={true}
-              customClickEvent={() => NewTabRouter('https://app-perf-analytics.herokuapp.com/data-provider-client')}
-            >Go to Data Provider App</Button>
-          </>
+        { isStatisticsPending
+          ? <LoadingSpinner />
+          : resourceList.length
+            ? sourceListRenderer
+            : <>
+              <p>{NO_DATA_EXIST}</p>
+              <Button
+                secondary={true}
+                customClickEvent={() => NewTabRouter('https://app-perf-analytics.herokuapp.com/data-provider-client')}
+              >Go to Data Provider App</Button>
+            </>
         }
       </div>
     </div>

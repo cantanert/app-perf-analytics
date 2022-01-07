@@ -1,20 +1,39 @@
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 
 const GlobalContext = createContext({
   statistics: [],
   isStatisticsPending: false,
+  initialStartDate: null,
+  startDate: null,
+  initialEndDate: null,
+  endDate: null,
   isDateFiltersChanged: false,
   statisticSetter: () => {},
   isStatisticsPendingSetter: () => {},
-  setIsDateFilterChanged: () => {}
+  startDateSetter: () => {},
+  endDateSetter: () => {},
 });
-//This default context value is important for auto-completion
+//This default context value is important for IDE auto-completion
 
 export function GlobalContextProvider(props){
+  const currentDate = new Date();
+  const halfHourAgo = new Date(currentDate.getTime() - 30*60000)
 
   const [statistics, setStatistics] = useState([]);
-  const [isStatisticsPending, setIsStatisticsPending] = useState(true)
-  const [isDateFiltersChanged, setIsDateFiltersChanged] = useState(false)
+  const [isStatisticsPending, setIsStatisticsPending] = useState(true);
+  const [initialStartDate] = useState(halfHourAgo);
+  const [startDate, setStartDate] = useState(halfHourAgo);
+  const [initialEndDate] = useState(currentDate);
+  const [endDate, setEndDate] = useState(currentDate);
+  const [isDateFiltersChanged, setIsDateFiltersChanged] = useState(false);
+
+  useEffect(() => {
+    if (!(initialEndDate === endDate && initialStartDate === startDate)){
+      setIsDateFiltersChanged(true);
+    } else {
+      setIsDateFiltersChanged(false);
+    }
+  }, [startDate, endDate])
 
   function statisticSetter(metrics) {
     setStatistics(metrics);
@@ -24,17 +43,26 @@ export function GlobalContextProvider(props){
     setIsStatisticsPending(boolean);
   }
 
-  function setIsDateFilterChanged(boolean){
-    setIsDateFiltersChanged(boolean)
+  function startDateSetter(date){
+    setStartDate(date);
+  }
+
+  function endDateSetter(date){
+    setEndDate(date)
   }
 
   const context = {
     statistics,
+    initialStartDate,
+    startDate,
+    initialEndDate,
+    endDate,
     isStatisticsPending,
     isDateFiltersChanged,
     statisticSetter,
     isStatisticsPendingSetter,
-    setIsDateFilterChanged
+    startDateSetter,
+    endDateSetter
   };
 
   return <GlobalContext.Provider value={context}>

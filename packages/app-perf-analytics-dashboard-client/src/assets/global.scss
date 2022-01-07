@@ -21,6 +21,15 @@
   }
 }
 
+.Toastify{
+  &__toast{
+    font-family: inherit!important;
+    font-size: 12px!important;
+    text-align: left;
+    min-height: unset!important;
+  }
+}
+
 
 @media screen and (max-width: $width-medium-min){
   .react-datepicker-wrapper{
