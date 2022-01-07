@@ -24,7 +24,11 @@ const getByPostMetrics = (req, res) => {
   const {startDate, endDate} = params;
   if (Date.parse(startDate) > Date.parse(endDate)){
     res.status(400).json({
-      message: "ERROR : End date must be after start date."
+      message: "ERROR : End date must be later than start date."
+    });
+  } else if(Date.parse(endDate) > Date.parse(new Date())){
+    res.status(400).json({
+      message: "ERROR : End date cannot be later than current date"
     });
   } else {
     Metric

@@ -53,10 +53,17 @@ export const initializeAnalyticsLib = (destinationUrl) => {
     window.PerformanceMetrics = Dataset;
   }).observe(config);
 
+  const sendBeaconHandler = () => {
+    if (sendBeaconHandler._hashBeaconSended) return;
+    sendBeaconHandler._hashBeaconSended = true;
+
+    window.PerformanceMetrics.dateInfo = new Date();
+    navigator.sendBeacon(destinationUrl, JSON.stringify(window.PerformanceMetrics));
+  }
   document.addEventListener('visibilitychange', function logData() {
     if (document.visibilityState === 'hidden') {
-      window.PerformanceMetrics.dateInfo = new Date();
-      navigator.sendBeacon(destinationUrl, JSON.stringify(window.PerformanceMetrics));
+      if (!navigator.sendBeacon) return;
+      sendBeaconHandler();
     }
   });
 }

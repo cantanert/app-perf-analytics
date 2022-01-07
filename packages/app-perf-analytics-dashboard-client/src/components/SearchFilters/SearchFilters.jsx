@@ -49,7 +49,6 @@ const SearchFilters = () => {
   }
 
   const submitHandler = () => {
-    debugger;
     if (isDateFiltersChanged){
       getAnalysisHandler();
     } else {
