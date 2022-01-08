@@ -5,24 +5,28 @@ const capabilityServiceRelativePath = "/api/performance-metrics-query";
 
 describe('performance-metrics-query-service', () => {
   describe("/GET performance-metrics-query", () => {
-    let response;
-    beforeEach(async () => {
-      response = await request(App).get(capabilityServiceRelativePath).send();
-    })
     it('should return a response with 200 HTTP status code', async () => {
-      expect(response.statusCode).toBe(200);
+      await request(App).get(capabilityServiceRelativePath).send().then((res) => {
+        expect(res.statusCode).toBe(200);
+      });
     });
 
     it('should return an object with "statistics" array', async () => {
-      expect(response.body.statistics).toBeDefined();
+      await request(App).get(capabilityServiceRelativePath).send().then((res) => {
+        expect(res.body.statistics).toBeDefined();
+      });
     });
 
     it('should return an object with "utcFromDate" string', async () => {
-      expect(response.body.utcFromDate).toBeDefined();
+      await request(App).get(capabilityServiceRelativePath).send().then((res) => {
+        expect(res.body.utcFromDate).toBeDefined();
+      });
     });
 
     it('should return an object with "utcToDate" string', async () => {
-      expect(response.body.utcToDate).toBeDefined();
+      await request(App).get(capabilityServiceRelativePath).send().then((res) => {
+        expect(res.body.utcToDate).toBeDefined();
+      });
     });
 
   })
@@ -34,56 +38,63 @@ describe('performance-metrics-query-service', () => {
     const oneMinuteAfterCurrent = new Date(currentDate.getTime() + 60000);
 
     it('should return 400 HTTP status code to a request with empty body', async () => {
-      const response = await request(App).post(capabilityServiceRelativePath).send();
-      expect(response.statusCode).toBe(400);
+      await request(App).post(capabilityServiceRelativePath).send().then((res) => {
+        expect(res.statusCode).toBe(400);
+      });
     });
 
     it('should return error when the start date is after the end date', async () => {
-      const response = await request(App).post(capabilityServiceRelativePath).send({
+      await request(App).post(capabilityServiceRelativePath).send({
         startDate: oneMinuteAfterCurrent,
         endDate: currentDate
+      }).then((res) => {
+        expect(res.statusCode).toBe(400);
       });
-      expect(response.statusCode).toBe(400);
     });
 
     it('should return error when the end date is after current date', async () => {
-      const response = await request(App).post(capabilityServiceRelativePath).send({
+      await request(App).post(capabilityServiceRelativePath).send({
         startDate: currentDate,
         endDate: oneMinuteBeforeCurrent
+      }).then((res) => {
+        expect(res.statusCode).toBe(400);
       });
-      expect(response.statusCode).toBe(400);
     });
 
     it('should return a response with 200 HTTP status code', async () => {
-      const response = await request(App).post(capabilityServiceRelativePath).send({
+      await request(App).post(capabilityServiceRelativePath).send({
         startDate: oneMinuteBeforeCurrent,
         endDate: currentDate
-      });
-      expect(response.statusCode).toBe(200);
+      }).then((res) => {
+        expect(res.statusCode).toBe(200);
+      })
     });
 
     it('should return an object with "statistics" array', async () => {
-      const response = await request(App).post(capabilityServiceRelativePath).send({
+      await request(App).post(capabilityServiceRelativePath).send({
         startDate: oneMinuteBeforeCurrent,
         endDate: currentDate
+      }).then((res) => {
+        expect(res.body.statistics).toBeDefined();
       });
-      expect(response.body.statistics).toBeDefined();
     });
 
     it('should return an object with "utcFromDate" string', async () => {
-      const response = await request(App).post(capabilityServiceRelativePath).send({
+      await request(App).post(capabilityServiceRelativePath).send({
         startDate: oneMinuteBeforeCurrent,
         endDate: currentDate
+      }).then((res) => {
+        expect(res.body.utcFromDate).toBeDefined();
       });
-      expect(response.body.utcFromDate).toBeDefined();
     });
 
     it('should return an object with "utcToDate" string', async () => {
-      const response = await request(App).post(capabilityServiceRelativePath).send({
+      await request(App).post(capabilityServiceRelativePath).send({
         startDate: oneMinuteBeforeCurrent,
         endDate: currentDate
+      }).then((res) => {
+        expect(res.body.utcToDate).toBeDefined();
       });
-      expect(response.body.utcToDate).toBeDefined();
     });
 
   })
