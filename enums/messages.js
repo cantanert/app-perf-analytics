@@ -1,8 +1,9 @@
 const MessageTexts  = {
   END_DATE_MUST_BE_LATER_THAN_START : "End date must be later than start date.",
-  END_DATE_CANNOT_BE_BEFORE_NOW : "End date cannot be later than current date",
+  END_DATE_CANNOT_BE_BEFORE_NOW : "End date cannot be later than current date.",
   METRIC_SUCCESSFULLY_SAVED: "Metric successfully saved!",
-  START_AND_END_DATE_MUST_BE_VALID: "Start and/or end day must be valid",
+  START_AND_END_DATE_MUST_BE_VALID: "Start and/or end day must be valid.",
+  REQUEST_BODY_CANNOT_BE_EMPTY: "Request body cannot be empty.",
   NOT_FOUND: "404 - Not Found"
 }
 
