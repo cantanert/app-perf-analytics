@@ -84,11 +84,28 @@
 
 
 @media screen and (max-width: $width-medium-min){
-  .react-datepicker-wrapper{
-    input{
-      font-size: 14px;
-      padding: 2px 10px;
-      text-align: center;
+  .react-datepicker{
+    &-wrapper{
+      input{
+        font-size: 14px;
+        padding: 2px 10px;
+        text-align: center;
+      }
+    }
+    &__time-container{
+      width: 25%!important;
+    }
+    &__month-container{
+      width: 75%;
+    }
+    &__month{
+      margin: 0!important;
+    }
+    &__day{
+     width: 11%!important;
+    }
+    &__time-box{
+      width: 100%!important;
     }
   }
   .recharts-responsive-container{

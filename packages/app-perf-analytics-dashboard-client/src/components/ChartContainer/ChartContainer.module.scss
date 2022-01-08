@@ -41,7 +41,7 @@
 @media screen and (max-width: $width-large-min){
   .chartContainer{
     width: 100%;
-    padding: 0;
+    padding: 0!important;
     margin-bottom: 30px;
     &_Title{
       font-size: 14px!important;
