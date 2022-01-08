@@ -7,7 +7,7 @@
 
   &_ItemsWrapper{
     width: fit-content;
-    margin: 25px;
+    margin: 25px 0 50px;
     &_Header{
       color: $theme-3;
       font-size: 36px;
@@ -36,6 +36,9 @@
    p{
      font-size: 9px;
      margin-top: 0px!important;
+   }
+   &_ItemsWrapper{
+     margin: 10px 0!important;
    }
  }
 }

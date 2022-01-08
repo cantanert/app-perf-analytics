@@ -8,7 +8,7 @@
 
   text-align: left;
   &_ItemWrapper{
-    height: 60vh;
+    max-height: 60vh;
     overflow: auto;
     &::-webkit-scrollbar{
       width: 6px
