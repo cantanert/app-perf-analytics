@@ -19,8 +19,8 @@
     height: 0;
     margin: 8px;
     box-sizing: border-box;
-    border: 32px solid $white;
-    border-color: $white transparent $white transparent;
+    border: 32px solid $theme-4;
+    border-color: $palette-3 transparent $palette-3 transparent;
     animation: LoadingSpinnerAnimation 1.2s infinite;
   }
 }

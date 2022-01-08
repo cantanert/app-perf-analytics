@@ -35,8 +35,9 @@ function ChartContainer(props) {
           ? <Chart
             dataset={dataset}
             datakey={datakey}
-            strokeColor="#0000FF"
-            fillColor="#7EC8E3"
+            strokeColor="#141E61"
+            strokeWidth={2}
+            fillColor="#ff6820"
           />
           : <>
             <p>{NO_DATA_EXIST}</p>

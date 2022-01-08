@@ -1,10 +1,35 @@
 @import "assets/utilities";
+@import "assets/variables";
+@import "assets/layout";
 
 .App {
+  position: relative;
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: auto;
   padding-top: 20px;
-  @include pageLoadAnimation
+  .container{
+    @include pageLoadAnimation
+  }
+}
+
+.header-badge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background: $palette-1;
+  z-index: 0;
+  transform: skewY(6deg);
+  transform-origin: top right;
+}
+
+@media screen and (max-width: $width-medium-min){
+  .header-badge{
+    height: 200px;
+  }
 }

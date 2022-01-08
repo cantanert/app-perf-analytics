@@ -7,6 +7,7 @@ import {metricTypes} from "../../enums/metricTypes";
 import GlobalContext from "../../context/GlobalContext";
 import dayjs from "dayjs";
 import {PERFORMANCE_METRICS_QUERY} from "../../enums/endpoints";
+import Card from "../Card/Card";
 
 const requester = new Requester();
 
@@ -85,25 +86,29 @@ function MonitoringArea() {
 
   return (
     <div className={classes.MonitoringArea}>
-      <div className={classes.MonitoringArea_Row}>
-        {
-          chartContainerTypes.map((type, index) => {
-            return (
-              <ChartContainer
-                key={index}
-                title={type.name}
-                dataset={getMetricsByType[type.value]()}
-                datakey={type.value}
-              />
-            )
-          })
-        }
-      </div>
-      <div className={classes.MonitoringArea_Row}>
-        <SourceList
-          resourceList={getMetricsByType[metricTypes.RESOURCES.value]()}
-        />
-      </div>
+      <Card>
+        <div className={classes.MonitoringArea_Row}>
+          {
+            chartContainerTypes.map((type, index) => {
+              return (
+                <ChartContainer
+                  key={index}
+                  title={type.name}
+                  dataset={getMetricsByType[type.value]()}
+                  datakey={type.value}
+                />
+              )
+            })
+          }
+        </div>
+      </Card>
+      <Card>
+        <div className={classes.MonitoringArea_Row}>
+          <SourceList
+            resourceList={getMetricsByType[metricTypes.RESOURCES.value]()}
+          />
+        </div>
+      </Card>
     </div>
   )
 }

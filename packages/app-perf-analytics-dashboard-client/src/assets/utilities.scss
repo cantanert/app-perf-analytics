@@ -1,20 +1,20 @@
 @import "../assets/variables";
 
-@mixin text-border-2xp-theme1{
-  text-shadow: -2px 0 $theme-1, 0 2px $theme-1, 2px 0 $theme-1, 0 -2px $theme-1;
+@mixin text-border-2xp-theme4{
+  text-shadow: -2px 0 $theme-4, 0 2px $theme-4, 2px 0 $theme-4, 0 -2px $theme-4;
 }
 
 
-@mixin text-border-3xp-theme1{
-  text-shadow: -3px 0 $theme-1, 0 3px $theme-1, 3px 0 $theme-1, 0 -3px $theme-1;
+@mixin text-border-3xp-theme4{
+  text-shadow: -3px 0 $theme-4, 0 3px $theme-4, 3px 0 $theme-4, 0 -3px $theme-4;
 }
 
-@mixin text-border-2xp-theme2{
-  text-shadow: -2px 0 $theme-2, 0 2px $theme-2, 2px 0 $theme-2, 0 -2px $theme-2
+@mixin text-border-2xp-theme3{
+  text-shadow: -2px 0 $theme-3, 0 2px $theme-3, 2px 0 $theme-3, 0 -2px $theme-3
 }
 
-@mixin text-border-3xp-theme2{
-  text-shadow: -3px 0 $theme-2, 0 3px $theme-2, 3px 0 $theme-2, 0 -3px $theme-2;
+@mixin text-border-3xp-theme3{
+  text-shadow: -3px 0 $theme-3, 0 3px $theme-3, 3px 0 $theme-3, 0 -3px $theme-3;
 }
 
 @mixin text-border-2xp-white{
@@ -26,7 +26,7 @@
 }
 
 @mixin pageLoadAnimation{
-  animation: pageLoad 3s
+  animation: pageLoad 1.5s
 }
 @keyframes pageLoad{
   0% {
@@ -43,9 +43,4 @@
 @mixin blueGradient{
   background: rgb(0,41,107);
   background: linear-gradient(180deg, rgba(0,41,107,1) 0%, rgba(0,63,136,1) 54%, rgba(0,80,157,1) 97%);
-}
-
-@mixin yellowGradient{
-  background: rgb(253,197,0);
-  background: linear-gradient(180deg, rgba(253,197,0,1) 0%, rgba(255,213,0,1) 67%);
 }

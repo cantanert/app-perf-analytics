@@ -10,14 +10,15 @@ $width-xlarge-max: 1499px;
 $width-xxlarge-min: 1500px;
 
 .container{
+  position: relative;
   margin-right: auto;
   margin-left: auto;
-
+  z-index: 1;
 }
 
 @media screen and (max-width: $width-xsmall-max){
   .container{
-    width: 95vw;
+    width: 90vw;
   }
 }
 

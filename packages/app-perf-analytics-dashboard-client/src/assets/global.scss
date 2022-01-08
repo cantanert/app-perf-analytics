@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   input{
+    cursor: pointer;
     font-family: inherit;
     background: transparent;
     color: $theme-4;
@@ -20,6 +21,49 @@
     border-radius: 2px;
   }
 }
+.react-datepicker{
+  font-family: inherit!important;
+  &__header{
+    background-color: $theme-2!important;
+  }
+  &__current-month{
+    color: $theme-1!important;
+  }
+  &__day-name{
+    color: $theme-1!important;
+  }
+  &-time__header{
+    color: $theme-1!important;
+  }
+  &__navigation-icon{
+    &::before{
+      border-color: $theme-1!important;
+    }
+  }
+  &__triangle{
+    &::before{
+      border-bottom-color: $theme-2!important;
+    }
+    &::after{
+      border-bottom-color: $theme-2!important;
+    }
+  }
+  &__day--selected{
+    background-color: $theme-2!important;
+  }
+  &__time-list-item--selected{
+    background-color: $theme-2!important;
+  }
+}
+
+.recharts-responsive-container{
+  height: 90% !important;
+  .recharts-layer{
+    path{
+      fill-opacity: 1!important;
+    }
+  }
+}
 
 .Toastify{
   &__toast{
@@ -27,6 +71,14 @@
     font-size: 12px!important;
     text-align: left;
     min-height: unset!important;
+  }
+  &__progress-bar--warning{
+    background-color: $theme-3!important;
+  }
+  &__toast-icon{
+    svg{
+      fill: $theme-3;
+    }
   }
 }
 
@@ -38,5 +90,8 @@
       padding: 2px 10px;
       text-align: center;
     }
+  }
+  .recharts-responsive-container{
+    height: 100% !important;
   }
 }

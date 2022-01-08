@@ -5,8 +5,18 @@ const Header = (props) => {
   return (
    <div className={classes.Header}>
      <div className={classes.Header_ItemsWrapper}>
-       <h1 data-testid="headerTitle">{title}</h1>
-       <p data-testid="headerSubtitle">{subtitle}</p>
+       <h1
+         className={classes.Header_ItemsWrapper_Header}
+         data-testid="headerTitle"
+       >
+         {title}
+       </h1>
+       <p
+         className={classes.Header_ItemsWrapper_SubHeader}
+         data-testid="headerSubtitle"
+       >
+         {subtitle}
+       </p>
      </div>
    </div>
   )

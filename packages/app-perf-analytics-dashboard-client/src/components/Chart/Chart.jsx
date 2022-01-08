@@ -10,7 +10,7 @@ import {
 
 
 export default function App(props) {
-  const {dataset, datakey, strokeColor, fillColor} = props;
+  const {dataset, datakey, strokeColor,strokeWidth, fillColor} = props;
   return (
     <ResponsiveContainer>
       <AreaChart
@@ -21,6 +21,7 @@ export default function App(props) {
           left: 0,
           bottom: 0
         }}
+        strokeWidth={strokeWidth}
       >
         <CartesianGrid strokeDasharray="3 3"/>
         <XAxis dataKey="xAxisLabel"/>

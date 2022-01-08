@@ -4,14 +4,16 @@
   position: relative;
   display: flex;
   align-items: flex-end;
-  margin: 25px;
+
   &_TimePicker{
     flex: 1;
-    padding: 0 5px;
+    &:nth-child(2){
+      padding-left: 10px;
+    }
     &_Title{
       font: inherit;
-      font-size: 12px;
-      font-weight: 200;
+      font-size: 14px;
+      font-weight: 300;
       margin: 0;
       text-align: start;
     }
@@ -21,13 +23,9 @@
     justify-content: space-around;
     flex: 2;
   }
-  &_ClearButtonWrapper{
+  &_ClearButtonWrapper, &_SubmitButtonWrapper{
     flex: 1;
-    padding: 0 5px;
-  }
-  &_SubmitButtonWrapper{
-    flex: 1;
-    padding: 0 5px;
+    padding-left: 10px;
   }
 }
 
@@ -41,6 +39,9 @@
       margin-bottom: 10px;
       display: flex;
       align-items: center;
+      &:nth-child(2){
+        padding-left: 0!important;
+      }
       p{
         width: 150px;
         font-size: 16px;
@@ -55,11 +56,13 @@
       width: 100%;
     }
     &_ClearButtonWrapper{
+      padding-left: 0;
       margin-top: 10px;
       width: 100%;
       margin-bottom: 10px;
     }
     &_SubmitButtonWrapper{
+      padding-left: 0;
       width: 100%;
       margin-bottom: 10px;
     }

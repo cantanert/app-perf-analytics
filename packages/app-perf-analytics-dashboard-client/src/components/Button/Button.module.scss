@@ -10,7 +10,7 @@
   font: inherit;
   padding: 5px 10px;
   border-radius: 2px;
-  font-weight: 200;
+  font-weight: 300;
   width: 100%;
   &_Secondary{
     background-color: transparent;
@@ -31,7 +31,7 @@
   }
 }
 
-@media screen and (max-width: $width-small-min){
+@media screen and (max-width: $width-medium-min){
   .Button{
     &:hover{
       opacity: 1;
