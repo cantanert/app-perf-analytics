@@ -30,4 +30,8 @@ jobs:
     - name: install all packages
       run: npm run install:all-packages
     - name: Run all tests
-      run: MONGO_ATLAS_ADDRESS='${{ secrets.MONGO_ATLAS_ADDRESS }}' MONGO_ATLAS_PASSWORD='${{ secrets.MONGO_ATLAS_PASSWORD }}' MONGO_ATLAS_USERNAME='${{ secrets.MONGO_ATLAS_USERNAME }}' npx jest --verbose ./__tests__ && npm run test
+      env:
+        MONGO_ATLAS_ADDRESS: ${{ secrets.MONGO_ATLAS_ADDRESS }}
+        MONGO_ATLAS_PASSWORD: ${{ secrets.MONGO_ATLAS_PASSWORD }}
+        MONGO_ATLAS_USERNAME: ${{ secrets.MONGO_ATLAS_USERNAME }}
+      run: npm run test
