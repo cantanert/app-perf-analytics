@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <div className="header-badge"/>
-      <div class="container">
+      <div className="container">
         <Header
           title="PerfAnalytics Dashboard"
           subtitle="Dashboard for performance analytics visualization"
