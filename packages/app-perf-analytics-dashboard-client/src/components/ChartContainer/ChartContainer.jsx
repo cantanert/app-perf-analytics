@@ -37,7 +37,7 @@ function ChartContainer(props) {
             datakey={datakey}
             strokeColor="#141E61"
             strokeWidth={2}
-            fillColor="#ff6820"
+            fillColor="#f27a1a"
           />
           : <>
             <p>{NO_DATA_EXIST}</p>
