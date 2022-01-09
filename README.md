@@ -194,12 +194,12 @@ To run this project locally, you will need to add the following environment vari
 - [@cantanert](https://www.github.com/cantanert)
 
 ## 📷 Screenshots
-###Mobile
-![](assets/img/mobile-1.png)
-![](assets/img/mobile-2.png)
-###Tablet
-![](assets/img/tablet-1.png)
-![](assets/img/tablet-2.png)
+
 ###Desktop
-![](assets/img/desktop-1.png)
 ![](assets/img/desktop-2.png)
+
+###Mobile
+![](assets/img/mobile-2.png)
+
+###Tablet
+![](assets/img/tablet-2.png)
