@@ -13,7 +13,10 @@ const SourceListItem = (props) => {
   })
 
   return (
-    <div className={classes.SourceListItem}>
+    <div
+      className={classes.SourceListItem}
+      data-testid="FilePresenterWrapper"
+    >
       {resourceRenderer}
     </div>
   )

@@ -87,7 +87,10 @@ function MonitoringArea() {
   return (
     <div className={classes.MonitoringArea}>
       <Card>
-        <div className={classes.MonitoringArea_Row}>
+        <div
+          className={classes.MonitoringArea_Row}
+          data-testid="MonitoringAreaRow"
+        >
           {
             chartContainerTypes.map((type, index) => {
               return (
@@ -103,7 +106,10 @@ function MonitoringArea() {
         </div>
       </Card>
       <Card>
-        <div className={classes.MonitoringArea_Row}>
+        <div
+          className={classes.MonitoringArea_Row}
+          data-testid="MonitoringAreaRow"
+        >
           <SourceList
             resourceList={getMetricsByType[metricTypes.RESOURCES.value]()}
           />

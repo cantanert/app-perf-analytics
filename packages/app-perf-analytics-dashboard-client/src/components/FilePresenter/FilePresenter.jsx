@@ -7,7 +7,10 @@ const FilePresenter = (props) => {
   }
   const {fileData} = props;
   return (
-    <div className={classes.FilePresenter}>
+    <div
+      className={classes.FilePresenter}
+      data-testid="FilePresenter"
+    >
       <div className={classes.FilePresenter_iniatorType}>
         <p>{fileData.initiatorType}</p>
       </div>

@@ -19,10 +19,16 @@ const SourceList = (props) => {
 
   const sourceListRenderer = resourceList.map((item, index) => {
       return (
-        <div className={classes.SourceList_ItemTitle_Container}>
+        <div
+          key={index}
+          className={classes.SourceList_ItemTitle_Container}
+          data-testid="SourceListItemTitleContainer"
+        >
           <p
-            key={index}
-            className={classes.SourceList_ItemTitle}>
+            key={index + "p_element"}
+            className={classes.SourceList_ItemTitle}
+            data-testid="SourceListItemTitle"
+          >
             {dayFormatter(item.dateInfo)}
           </p>
           <SourceListItem
@@ -42,7 +48,7 @@ const SourceList = (props) => {
           : resourceList.length
             ? sourceListRenderer
             : <>
-              <p>{NO_DATA_EXIST}</p>
+              <p data-testid="noEntryText">{NO_DATA_EXIST}</p>
               <Button
                 secondary={true}
                 customClickEvent={() => NewTabRouter('https://app-perf-analytics.herokuapp.com/data-provider-client')}
