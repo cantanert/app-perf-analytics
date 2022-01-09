@@ -16,7 +16,7 @@ describe("SourceListItem.test.js", () => {
       "responseEnd": 3.23679999999702,
       "date": "2022-01-08T21:57:10.415Z"
     },
-  ]
+  ];
 
   it('should not contain anything as content if the resource param empty', () => {
     render(<SourceListItem resource={[]} />);

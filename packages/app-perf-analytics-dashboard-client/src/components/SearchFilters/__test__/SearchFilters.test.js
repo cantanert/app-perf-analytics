@@ -5,7 +5,7 @@ describe('SearchFilters.test.js', () => {
 
   beforeEach(() => {
     render(<SearchFilters/>);
-  })
+  });
 
   it('should be rendered', () => {
     const wrapper = screen.getByTestId('SearchFilters');

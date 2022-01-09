@@ -16,7 +16,7 @@
   "scripts": {
     "start": "env-cmd -f ../../.env react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false",
+    "test": "react-scripts test --silent --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
