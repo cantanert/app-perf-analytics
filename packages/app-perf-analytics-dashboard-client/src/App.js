@@ -9,7 +9,10 @@ import Card from "./components/Card/Card";
 function App() {
   return (
     <div className="App">
-      <div className="header-badge"/>
+      <div
+        data-testid="header-badge"
+        className="header-badge"
+      />
       <div className="container">
         <Header
           title="PerfAnalytics Dashboard"
