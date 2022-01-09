@@ -24,7 +24,7 @@
 .react-datepicker{
   font-family: inherit!important;
   &__header{
-    background-color: $theme-2!important;
+    background-color: $theme-4!important;
   }
   &__current-month{
     color: $theme-1!important;
@@ -42,17 +42,17 @@
   }
   &__triangle{
     &::before{
-      border-bottom-color: $theme-2!important;
+      border-bottom-color: $theme-4!important;
     }
     &::after{
-      border-bottom-color: $theme-2!important;
+      border-bottom-color: $theme-4!important;
     }
   }
   &__day--selected{
-    background-color: $theme-2!important;
+    background-color: $theme-4!important;
   }
   &__time-list-item--selected{
-    background-color: $theme-2!important;
+    background-color: $theme-4!important;
   }
 }
 
