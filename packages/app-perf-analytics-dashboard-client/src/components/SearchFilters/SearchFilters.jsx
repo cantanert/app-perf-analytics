@@ -71,10 +71,18 @@ const SearchFilters = () => {
   }
 
   return (
-    <div className={classes.SearchFilters}>
+    <div
+      className={classes.SearchFilters}
+      data-testid="SearchFilters"
+    >
       <div className={classes.SearchFilters_TimePickerWrapper}>
         <div className={classes.SearchFilters_TimePicker}>
-          <p className={classes.SearchFilters_TimePicker_Title}>Start Time</p>
+          <p
+            className={classes.SearchFilters_TimePicker_Title}
+            data-testid="startTime"
+          >
+            Start Time
+          </p>
           <DatePicker
             selected={startDate}
             onChange={(date) => startDateSetter(date)}
@@ -84,7 +92,12 @@ const SearchFilters = () => {
           />
         </div>
         <div className={classes.SearchFilters_TimePicker}>
-          <p className={classes.SearchFilters_TimePicker_Title}>End Time</p>
+          <p
+            className={classes.SearchFilters_TimePicker_Title}
+            data-testid="endTime"
+          >
+            End Time
+          </p>
           <DatePicker
             selected={endDate}
             onChange={(date) => endDateSetter(date)}
@@ -94,7 +107,10 @@ const SearchFilters = () => {
           />
         </div>
       </div>
-      <div className={classes.SearchFilters_ClearButtonWrapper}>
+      <div
+        className={classes.SearchFilters_ClearButtonWrapper}
+        data-testid="clearButton"
+      >
         <Button
           secondary={true}
           customClickEvent={clearHandler}
@@ -102,7 +118,10 @@ const SearchFilters = () => {
           Clear Filters
         </Button>
       </div>
-      <div className={classes.SearchFilters_SubmitButtonWrapper}>
+      <div
+        className={classes.SearchFilters_SubmitButtonWrapper}
+        data-testid="submitButton"
+      >
         <Button
           customClickEvent={submitHandler}
         >
