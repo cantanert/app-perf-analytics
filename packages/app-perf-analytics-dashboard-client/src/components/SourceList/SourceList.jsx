@@ -19,7 +19,7 @@ const SourceList = (props) => {
 
   const sourceListRenderer = resourceList.map((item, index) => {
       return (
-        <>
+        <div className={classes.SourceList_ItemTitle_Container}>
           <p
             key={index}
             className={classes.SourceList_ItemTitle}>
@@ -28,7 +28,7 @@ const SourceList = (props) => {
           <SourceListItem
             resource={item.resources}
           />
-        </>
+        </div>
       )
   });
 

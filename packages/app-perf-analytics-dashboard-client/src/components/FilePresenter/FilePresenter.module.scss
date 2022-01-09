@@ -4,6 +4,11 @@
 .FilePresenter{
   position: relative;
   display: flex;
+  justify-content: space-between;
+  color: $theme-4;
+  &:nth-child(2n+1){
+    background-color: $smoke;
+  }
   p{
     font-size: 14px;
     margin: 2px 10px 2px 0;
@@ -12,16 +17,19 @@
     display: flex;
   }
   &_iniatorType{
+    flex: 1;
     p{
       font-weight: 900;
     }
   }
   &_name{
+    flex: 7;
     p{
       font-weight: 200;
     }
   }
   &_responseEnd{
+    width: fit-content;
     p{
       font-weight: 900;
     }
@@ -37,5 +45,6 @@
     margin-bottom: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
+
   }
 }

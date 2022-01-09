@@ -2,7 +2,7 @@ import classes from "./FilePresenter.module.scss";
 
 const FilePresenter = (props) => {
   const host = "https://app-perf-analytics.herokuapp.com";
-  const fileRelativePath = (file) => {
+  const fileRelativePath = (file = "") => {
     return file.split(host)[1];
   }
   const {fileData} = props;
@@ -15,7 +15,7 @@ const FilePresenter = (props) => {
         <p>{fileRelativePath(fileData.name)}</p>
       </div>
       <div className={classes.FilePresenter_responseEnd}>
-        <p>{fileData.responseEnd.toFixed(2)} s</p>
+        <p>{fileData?.responseEnd?.toFixed(2)}s</p>
       </div>
     </div>
   )

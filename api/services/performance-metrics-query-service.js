@@ -32,19 +32,14 @@ const getByPostMetrics = (req, res) => {
     const {startDate, endDate} = params;
 
     if (startDate === null || startDate === undefined || endDate === null || endDate === undefined){
-      console.log('nullish');
       badRequestResponse(res, Messages.START_AND_END_DATE_MUST_BE_VALID)
     } else if(typeof startDate !== 'string' || typeof endDate !== 'string'){
-      console.log('types');
       badRequestResponse(res, Messages.START_AND_END_DATE_TYPES_MUST_BE_VALID)
     } else if (Date.parse(startDate) > Date.parse(endDate)){
-      console.log('start > end');
       badRequestResponse(res, Messages.END_DATE_MUST_BE_LATER_THAN_START)
     } else if(Date.parse(endDate) > Date.parse(new Date())){
-      console.log('end > current');
       badRequestResponse(res, Messages.END_DATE_CANNOT_BE_BEFORE_NOW)
     } else {
-      console.log("done");
       Metric
         .find({date: { $gte: startDate, $lte: endDate }})
         .exec()
