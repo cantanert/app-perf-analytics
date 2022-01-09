@@ -5,7 +5,7 @@ describe('SourceList.test.js', () => {
 
   const resourceListProp = [
     {
-      dateInfo: "Wed Nov 23 1831 03:21:28 GMT+0155 (GMT+03:00)",
+      dateInfo: "Sat Feb 15 2020 04:39:30 GMT+0300 (GMT+03:00)",
       resources: []
     },
     {
@@ -30,7 +30,7 @@ describe('SourceList.test.js', () => {
   it('should render a title text for every element of resourceList param', () => {
     render(<SourceList resourceList={resourceListProp}/>)
     const text = screen.getAllByTestId('SourceListItemTitle');
-    expect(text[0].textContent).toBe('23/11/1831 03:22:20');
+    expect(text[0].textContent).toBe('15/02/2020 04:39:30');
     expect(text[1].textContent).toBe('05/01/2003 03:26:09');
   });
 
