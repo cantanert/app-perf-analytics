@@ -15,7 +15,7 @@ const SourceList = (props) => {
 
   const dayFormatter = (date) => {
     return dayjs(date).format('DD/MM/YYYY HH:mm:ss')
-  }
+  };
 
   const sourceListRenderer = resourceList.map((item, index) => {
       return (
@@ -35,13 +35,15 @@ const SourceList = (props) => {
             resource={item.resources}
           />
         </div>
-      )
+      );
   });
 
 
   return (
     <div className={classes.SourceList}>
-      <p className={classes.SourceList_Title}>Resource Timing Logs</p>
+      <p className={classes.SourceList_Title}>
+        Resource Timing Logs
+      </p>
       <div className={classes.SourceList_ItemWrapper}>
         { isStatisticsPending
           ? <LoadingSpinner />

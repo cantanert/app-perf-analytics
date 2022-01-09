@@ -9,7 +9,7 @@ const payload = {
   RESOURCES: [],
   TTFB: 0.07170000000298023,
   WINDOW_LOAD: 0.7939000000059605,
-  dateInfo: "2022-01-08T20:23:22.873Z"
+  dateInfo: "2000-01-08T20:23:22.873Z"
 }
 
 describe("performance-metrics-capability-service",() => {

@@ -10,7 +10,7 @@ const SourceListItem = (props) => {
         fileData={item}
         key={index}
       />)
-  })
+  });
 
   return (
     <div
@@ -19,7 +19,7 @@ const SourceListItem = (props) => {
     >
       {resourceRenderer}
     </div>
-  )
+  );
 }
 
 export default SourceListItem;

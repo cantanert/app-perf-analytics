@@ -4,5 +4,5 @@ export const generateQueryUri = (params) => {
   return keys.reduce((acc, key) => {
     const isLastOne = keys.indexOf(key) === keys.length - 1;
     return acc + `${key}=${params[key]}${isLastOne ? '' : '&'}`
-  }, '?')
-}
+  }, '?');
+};

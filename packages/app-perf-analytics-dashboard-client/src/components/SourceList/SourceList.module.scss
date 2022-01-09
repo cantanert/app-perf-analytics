@@ -14,16 +14,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     &::-webkit-scrollbar{
-      width: 6px
-    }
-
-    &::-webkit-scrollbar-track{
-      border-radius: 5px;
-      -webkit-box-shadow: inset 0 0 20px $theme-4
+      width: 10px
     }
 
     &::-webkit-scrollbar-thumb{
-      background-color: $theme-3;
+      background-color: $theme-4;
       border-radius: 6px;
 
     }
@@ -50,11 +45,13 @@
   }
   &_ItemTitle{
     text-align: start;
-    margin-bottom: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $theme-4;
+    width: fit-content;
     font-size: 16px!important;
     &_Container{
       width: 49%;
-      height: 200px;
+
       border-left: 6px solid $theme-3;
       border-top-left-radius: 7px;
       border-bottom-left-radius: 7px;
@@ -84,11 +81,11 @@
   }
 }
 
-@media screen and (min-width: $width-xxlarge-min){
+@media screen and (max-width: $width-xxlarge-min){
   .SourceList{
     &_ItemTitle{
       &_Container{
-        height: 180px;
+        margin-bottom: 15px!important;
         width: 100%!important;
       }
     }

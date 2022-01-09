@@ -13,11 +13,10 @@ const GlobalContext = createContext({
   startDateSetter: () => {},
   endDateSetter: () => {},
 });
-//This default context value is important for IDE auto-completion
 
 export function GlobalContextProvider(props){
   const currentDate = new Date();
-  const halfHourAgo = new Date(currentDate.getTime() - 30*60000)
+  const halfHourAgo = new Date(currentDate.getTime() - 30*60000);
 
   const [statistics, setStatistics] = useState([]);
   const [isStatisticsPending, setIsStatisticsPending] = useState(true);
@@ -33,7 +32,7 @@ export function GlobalContextProvider(props){
     } else {
       setIsDateFiltersChanged(false);
     }
-  }, [startDate, endDate])
+  }, [startDate, endDate]);
 
   function statisticSetter(metrics) {
     setStatistics(metrics);

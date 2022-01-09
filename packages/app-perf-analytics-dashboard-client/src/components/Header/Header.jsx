@@ -19,7 +19,7 @@ const Header = (props) => {
        </p>
      </div>
    </div>
-  )
+  );
 }
 
 export default Header;

@@ -36,7 +36,7 @@ const SearchFilters = () => {
       getAnalysisHandler();
       setIsClearFilterAction(false);
     }
-  },[isClearFilterAction])
+  },[isClearFilterAction]);
 
   const clearHandler = () => {
     if (isDateFiltersChanged){
@@ -46,7 +46,7 @@ const SearchFilters = () => {
     } else {
       toast.warn(FILTERS_HAS_NO_CHANGE);
     }
-  }
+  };
 
   const submitHandler = () => {
     if (isDateFiltersChanged){
@@ -54,7 +54,7 @@ const SearchFilters = () => {
     } else {
       toast.warn(FILTERS_HAS_NO_CHANGE);
     }
-  }
+  };
 
   const getAnalysisHandler = () => {
     isStatisticsPendingSetter(true);
@@ -68,7 +68,7 @@ const SearchFilters = () => {
     }).finally(() => {
       isStatisticsPendingSetter(false);
     })
-  }
+  };
 
   return (
     <div

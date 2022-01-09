@@ -15,6 +15,7 @@
   }
   &_iniatorType, &_name, &_responseEnd{
     display: flex;
+    line-height: 15px;
   }
   &_iniatorType{
     flex: 1;
@@ -38,13 +39,13 @@
 
 @media screen and (max-width: $width-small-min){
   .FilePresenter{
-    flex-direction: column;
-    border-left: 3px solid $theme-4;
+    flex-wrap: wrap;
     padding: 3px;
     border-radius: 2px;
-    margin-bottom: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
-
+    &_iniatorType, &_name, &_responseEnd{
+      line-height: 15px;
+    }
   }
 }

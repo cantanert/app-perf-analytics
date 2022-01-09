@@ -19,4 +19,4 @@ export const metricTypes = {
     name: "Resources",
     value: "resources"
   }
-}
+};

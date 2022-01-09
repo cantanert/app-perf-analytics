@@ -1,17 +1,18 @@
 export const initializeAnalyticsLib = (destinationUrl) => {
+
   const Enums = {
     PAINT : "paint",
     RESOURCE: "resource",
-    NAVIGATION: "navigation"
-  }
+    NAVIGATION: "navigation",
+  };
 
   const config = {
     entryTypes: [
       Enums.PAINT,
       Enums.RESOURCE,
       Enums.NAVIGATION
-    ]
-  }
+    ],
+  };
 
   let Dataset = {
     TTFB: null,
@@ -21,7 +22,7 @@ export const initializeAnalyticsLib = (destinationUrl) => {
     RESOURCES: [],
   };
 
-  function msToSecondsConverter(milliseconds){
+  const msToSecondsConverter = (milliseconds) =>{
     return milliseconds / 1000;
   }
 
@@ -43,7 +44,7 @@ export const initializeAnalyticsLib = (destinationUrl) => {
       Dataset.TTFB = msToSecondsConverter(entry.responseStart);
       Dataset.DOM_LOAD = msToSecondsConverter(entry.domComplete);
       Dataset.WINDOW_LOAD = msToSecondsConverter(entry.loadEventEnd);
-    }
+    },
   }
 
   new PerformanceObserver((entryList) => {
@@ -60,6 +61,7 @@ export const initializeAnalyticsLib = (destinationUrl) => {
     window.PerformanceMetrics.dateInfo = new Date();
     navigator.sendBeacon(destinationUrl, JSON.stringify(window.PerformanceMetrics));
   }
+
   document.addEventListener('visibilitychange', function logData() {
     if (document.visibilityState === 'hidden') {
       if (!navigator.sendBeacon) return;

@@ -24,7 +24,7 @@ describe("FilePresenter.test.js", () => {
   it('should render file name text', () => {
     render(<FilePresenter fileData={fileDateProp} />)
     const fileName = screen.getByTestId("name");
-    expect(fileName.textContent).toBe("/favicon.ico");
+    expect(fileName.textContent).toBe("favicon.ico");
   });
 
   it('should not render any file name text if the name param nullish', () => {

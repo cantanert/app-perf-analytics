@@ -8,7 +8,7 @@ const LoadingSpinner = () => {
     >
       <div className={classes.LoadingSpinner}/>
     </div>
-  )
+  );
 }
 
 export default LoadingSpinner;

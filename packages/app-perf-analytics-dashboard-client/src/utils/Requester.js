@@ -2,7 +2,6 @@ import axios from "axios";
 import {generateQueryUri} from "./queryUriGenerator";
 
 export default class Requester{
-  constructor() {}
 
   async post(path, body = {}, config){
     return axios.post(path, body, config)
@@ -11,8 +10,8 @@ export default class Requester{
       })
       .catch(({response}) => {
         return Promise.reject(response);
-      })
-  }
+      });
+  };
 
   async get(path, params, config={}) {
     if(params) path = `${path}${generateQueryUri(params)}`
@@ -22,7 +21,7 @@ export default class Requester{
       })
       .catch((err) => {
         return Promise.reject(err);
-      })
-  }
+      });
+  };
 
-}
+};

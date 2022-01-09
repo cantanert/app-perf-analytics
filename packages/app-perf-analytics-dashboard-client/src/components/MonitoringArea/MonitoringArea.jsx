@@ -28,11 +28,11 @@ function MonitoringArea() {
         isStatisticsPendingSetter(false);
         console.log(err)
       })
-  },[])
+  },[]);
 
   const timeFormatter = (date) => {
     return dayjs(date).format("HH:mm:ss");
-  }
+  };
 
   const getMetricsByType = {
     [metricTypes.FCP.value]: function (){
@@ -75,14 +75,14 @@ function MonitoringArea() {
         }
       })
     }
-  }
+  };
 
   const chartContainerTypes = [
     metricTypes.FCP,
     metricTypes.TTFB,
     metricTypes.DOM_LOAD,
     metricTypes.WINDOW_LOAD,
-  ]
+  ];
 
   return (
     <div className={classes.MonitoringArea}>
@@ -116,7 +116,7 @@ function MonitoringArea() {
         </div>
       </Card>
     </div>
-  )
+  );
 }
 
 export default MonitoringArea;

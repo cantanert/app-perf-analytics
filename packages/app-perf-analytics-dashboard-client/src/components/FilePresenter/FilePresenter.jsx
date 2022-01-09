@@ -1,10 +1,12 @@
 import classes from "./FilePresenter.module.scss";
 
 const FilePresenter = (props) => {
-  const host = "https://app-perf-analytics.herokuapp.com";
+
   const fileRelativePath = (file = "") => {
-    return file.split(host)[1];
-  }
+    const splitArray = file.split("/");
+    return splitArray[splitArray.length-1];
+  };
+
   const {fileData} = props;
   return (
     <div
