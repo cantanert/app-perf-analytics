@@ -16,7 +16,7 @@
     "build:provider-client": "cd packages/app-perf-analytics-data-provider-client && npm run build",
     "build:analytics-lib": "cd packages/perf-analytics-lib && npm run build",
     "build:all-packages": "npm run build:dashboard && npm run build:provider-client && npm run build:analytics-lib",
-    "test": "jest --forceExit --silent --verbose ./__tests__ && cd packages/app-perf-analytics-dashboard-client && npm run test && cd ../app-perf-analytics-data-provider-client && npm run test"
+    "test": "NODE_ENV=test jest --forceExit --silent --verbose ./__tests__ && cd packages/app-perf-analytics-dashboard-client && npm run test && cd ../app-perf-analytics-data-provider-client && npm run test"
   },
   "author": "cantanert@gmail.com",
   "license": "ISC",

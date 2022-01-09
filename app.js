@@ -4,7 +4,6 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const Messages = require('./enums/messages')
 
 async function main() {
   await mongoose.connect(`mongodb+srv://${process.env.MONGO_ATLAS_USERNAME}:${process.env.MONGO_ATLAS_PASSWORD}@${process.env.MONGO_ATLAS_ADDRESS}`);
@@ -23,7 +22,7 @@ const apiController = require('./api/controllers/api');
 const internalServerErrorController = require('./api/services/internal-server-error-service')
 const notFoundController = require('./api/services/not-found-service')
 
-app.use(morgan('dev'));
+process.env.NODE_ENV !== "test" && app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(bodyParser.text());
