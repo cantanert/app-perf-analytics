@@ -1,9 +1,9 @@
 const Metric = require('../models/metric');
 const Messages = require('../../enums/messages');
 
-const badRequestResponse = (res) => {
+const badRequestResponse = (res, errorMessage) => {
   res.status(400).json({
-    message: Messages.REQUEST_BODY_CANNOT_BE_EMPTY
+    message: errorMessage
   })
 }
 
@@ -13,7 +13,6 @@ const sendAnalytics = (req, res) => {
     : req.body;
 
   if(Object.keys(params).length){
-
     const {
       FCP,
       TTFB,
@@ -31,7 +30,7 @@ const sendAnalytics = (req, res) => {
       || RESOURCES == null || RESOURCES == undefined
       || dateInfo === null || dateInfo === undefined
     ){
-      badRequestResponse(res);
+      badRequestResponse(res, Messages.PARAMS_CANNOT_BE_NULLISH);
     } else if(
       typeof TTFB !== "number"
       || typeof FCP !== "number"
@@ -39,8 +38,7 @@ const sendAnalytics = (req, res) => {
       || typeof DOM_LOAD !== "number"
       || typeof dateInfo !== "string"
     ){
-      console.log('deb');
-      badRequestResponse(res);
+      badRequestResponse(res, Messages.PARAM_TYPES_ERROR);
     } else {
       const metric = new Metric({
         ttfb: params.TTFB,
@@ -65,14 +63,12 @@ const sendAnalytics = (req, res) => {
             },
           });
         })
-        .catch((err) => {
-          badRequestResponse(res);
+        .catch(() => {
+          badRequestResponse(res, Messages.SOMETHING_WENT_WRONG);
         });
     }
   } else {
-    res.status(400).json({
-      message: Messages.REQUEST_BODY_CANNOT_BE_EMPTY
-    });
+    badRequestResponse(res, Messages.REQUEST_BODY_CANNOT_BE_EMPTY);
   }
 }
 

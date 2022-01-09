@@ -1,6 +1,12 @@
 const Messages = require('../../enums/messages');
 const Metric = require('../models/metric');
 
+const badRequestResponse = (res, errorMessage) => {
+  res.status(400).json({
+    message: errorMessage
+  });
+}
+
 const getMetrics = (req, res) => {
   const currentDate = new Date();
   const halfHourAgo = new Date(currentDate.getTime() - 30*60000);
@@ -22,31 +28,36 @@ const getByPostMetrics = (req, res) => {
     ? JSON.parse(req.body)
     : req.body;
 
-  const {startDate, endDate} = params;
+  if (Object.keys(params).length){
+    const {startDate, endDate} = params;
 
-  if (startDate === null || startDate === undefined || endDate === null || endDate === undefined){
-    res.status(400).json({
-      message: Messages.START_AND_END_DATE_MUST_BE_VALID
-    });
-  } else if (Date.parse(startDate) > Date.parse(endDate)){
-    res.status(400).json({
-      message: Messages.END_DATE_MUST_BE_LATER_THAN_START
-    });
-  } else if(Date.parse(endDate) > Date.parse(new Date())){
-    res.status(400).json({
-      message: Messages.END_DATE_CANNOT_BE_BEFORE_NOW
-    });
-  } else {
-    Metric
-      .find({date: { $gte: startDate, $lte: endDate }})
-      .exec()
-      .then((source) => {
-        res.status(200).json({
-          statistics: source,
-          utcFromDate: startDate,
-          utcToDate: endDate,
+    if (startDate === null || startDate === undefined || endDate === null || endDate === undefined){
+      console.log('nullish');
+      badRequestResponse(res, Messages.START_AND_END_DATE_MUST_BE_VALID)
+    } else if(typeof startDate !== 'string' || typeof endDate !== 'string'){
+      console.log('types');
+      badRequestResponse(res, Messages.START_AND_END_DATE_TYPES_MUST_BE_VALID)
+    } else if (Date.parse(startDate) > Date.parse(endDate)){
+      console.log('start > end');
+      badRequestResponse(res, Messages.END_DATE_MUST_BE_LATER_THAN_START)
+    } else if(Date.parse(endDate) > Date.parse(new Date())){
+      console.log('end > current');
+      badRequestResponse(res, Messages.END_DATE_CANNOT_BE_BEFORE_NOW)
+    } else {
+      console.log("done");
+      Metric
+        .find({date: { $gte: startDate, $lte: endDate }})
+        .exec()
+        .then((source) => {
+          res.status(200).json({
+            statistics: source,
+            utcFromDate: startDate,
+            utcToDate: endDate,
+          })
         })
-      })
+    }
+  } else {
+    badRequestResponse(res, Messages.REQUEST_BODY_CANNOT_BE_EMPTY);
   }
 }
 

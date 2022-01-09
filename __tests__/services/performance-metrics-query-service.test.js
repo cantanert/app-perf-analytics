@@ -37,13 +37,19 @@ describe('performance-metrics-query-service', () => {
     const oneMinuteBeforeCurrent = new Date(currentDate.getTime() - 60000);
     const oneMinuteAfterCurrent = new Date(currentDate.getTime() + 60000);
 
-    it('should return 400 HTTP status code to a request with empty body', async () => {
+    it('should return an exception with 400 HTTP status code to a request with empty body', async () => {
       await request(App).post(capabilityServiceRelativePath).send().then((res) => {
         expect(res.statusCode).toBe(400);
       });
     });
 
-    it('should return error when the start date is after the end date', async () => {
+    it('should return an exception with "message" prop to a request with empty body', async () => {
+      await request(App).post(capabilityServiceRelativePath).send().then((res) => {
+        expect(res.body.message).toBeDefined();
+      });
+    });
+
+    it('should return an exception with 400 HTTP status when the start date is after the end date', async () => {
       await request(App).post(capabilityServiceRelativePath).send({
         startDate: oneMinuteAfterCurrent,
         endDate: currentDate
@@ -52,7 +58,52 @@ describe('performance-metrics-query-service', () => {
       });
     });
 
-    it('should return error when the end date is after current date', async () => {
+    it('should return an exception with 400 HTTP status when a nullish start date param', async () => {
+      await request(App).post(capabilityServiceRelativePath).send({
+        startDate: null,
+        endDate: currentDate
+      }).then((res) => {
+        expect(res.statusCode).toBe(400);
+      });
+    });
+
+    it('should return an exception with "message" property when a nullish start date param', async () => {
+      await request(App).post(capabilityServiceRelativePath).send({
+        startDate: null,
+        endDate: currentDate
+      }).then((res) => {
+        expect(res.body.message).toBeDefined();
+      });
+    });
+
+    it('should return an exception with 400 HTTP status when a nullish end date param', async () => {
+      await request(App).post(capabilityServiceRelativePath).send({
+        startDate: oneMinuteAfterCurrent,
+        endDate: null
+      }).then((res) => {
+        expect(res.statusCode).toBe(400);
+      });
+    });
+
+    it('should return an exception with "message" property when a nullish end date param', async () => {
+      await request(App).post(capabilityServiceRelativePath).send({
+        startDate: oneMinuteAfterCurrent,
+        endDate: null
+      }).then((res) => {
+        expect(res.body.message).toBeDefined();
+      });
+    });
+
+    it('should return an exception with 400 HTTP status when the start date is after the end date', async () => {
+      await request(App).post(capabilityServiceRelativePath).send({
+        startDate: oneMinuteAfterCurrent,
+        endDate: currentDate
+      }).then((res) => {
+        expect(res.statusCode).toBe(400);
+      });
+    });
+
+    it('should return an exception with 400 HTTP status when the end date is after current date', async () => {
       await request(App).post(capabilityServiceRelativePath).send({
         startDate: currentDate,
         endDate: oneMinuteBeforeCurrent
