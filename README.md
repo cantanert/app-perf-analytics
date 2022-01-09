@@ -195,11 +195,14 @@ To run this project locally, you will need to add the following environment vari
 
 ## 📷 Screenshots
 
-###Desktop
+### Desktop
+
 ![](assets/img/desktop-2.png)
 
-###Mobile
+### Mobile
+
 ![](assets/img/mobile-2.png)
 
-###Tablet
+### Tablet
+
 ![](assets/img/tablet-2.png)
