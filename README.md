@@ -47,12 +47,21 @@ PerfAnalytics is an ecosystem which collects and criticizes web performance data
 
 ## Deployment
 
-This project has an automated deploy mechanism. After all merges to **master** branch, the auto-deploy mechanism is going to be triggered
+### Create an image and launch in a container via Docker
+
+Build and launch all services in detached mode. After then the following process done, It will be reachable from container-mapped local 8080 port. (localhost:8080)
+
+```bash
+  docker-compose up -d
+```
+
+
+This project has an automated deploy mechanism to prod. After all merges to ***master*** branch, the auto-deploy mechanism is going to be triggered.
 At the same time, there is also an automated-testing process is exist. Like deploy mechanism, this test process is going to be triggered immediately after master merges, too.
 
-**CI** : Github Actions
+**CI** : Github Actions (3 parallel test threads, one for each 12.x, 14.x, 16.x versions of node)
 
-**CD** : Heroku
+**CD** : Heroku (Dockerized deployments on a Heroku container stack instance)
 
 
 ## Demo
@@ -62,17 +71,7 @@ Dashboard Client App : https://app-perf-analytics.herokuapp.com
 Data Provider Client App : https://app-perf-analytics.herokuapp.com/data-provider-client
 
 
-## Run Locally
-
-### Create an image and launch in a container via Docker
-
-Build and launch all services in detached mode
-
-```bash
-  docker-compose up -d
-```
-
-### Manually Launch The Project
+## Run 
 
 Clone the project
 
@@ -104,6 +103,23 @@ Start the server
   npm run start:express
 ```
 
+Start ***app-perf-analytics-dashboard-client***  development server with hot reloading
+
+```bash
+  cd packages/app-perf-analytics-dashboard-client && npm run start
+```
+
+Start ***app-perf-analytics-data-provider-client***  development server with hot reloading
+
+```bash
+  cd packages/app-perf-analytics-data-provider-client && npm run start
+```
+
+For ***perf-analytics-lib.js*** changes, just made a new production build
+
+```bash
+  cd packages/perf-analytics-lib && npm run build
+```
 
 ## Running Tests
 
@@ -146,7 +162,7 @@ To run this project locally, you will need to add the following environment vari
 | `startDate`      | `String` | **Required**. Start date filter for query. |
 | `endDate`      | `String` | **Required**. End date filter for query. |
 
-#### Send data to save
+#### Send data to related API for saving
 
 ```
   POST /api/performance-metrics-capability
