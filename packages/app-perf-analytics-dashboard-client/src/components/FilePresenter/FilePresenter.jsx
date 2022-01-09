@@ -12,13 +12,13 @@ const FilePresenter = (props) => {
       data-testid="FilePresenter"
     >
       <div className={classes.FilePresenter_iniatorType}>
-        <p>{fileData.initiatorType}</p>
+        <p data-testid="initiatorType">{fileData.initiatorType}</p>
       </div>
       <div className={classes.FilePresenter_name}>
-        <p>{fileRelativePath(fileData.name)}</p>
+        <p data-testid="name">{fileRelativePath(fileData.name)}</p>
       </div>
       <div className={classes.FilePresenter_responseEnd}>
-        <p>{fileData?.responseEnd?.toFixed(2)}s</p>
+        <p data-testid="responseEnd">{fileData?.responseEnd?.toFixed(2)}s</p>
       </div>
     </div>
   )
