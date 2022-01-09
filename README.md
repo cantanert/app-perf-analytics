@@ -130,14 +130,14 @@ To run this project locally, you will need to add the following environment vari
 
 #### Get data for the last half hour
 
-```http
+```
   GET /api/performance-metrics-query
 ```
 
 
 #### Get data for the filtered date range
 
-```http
+```
   POST /api/performance-metrics-query
 ```
 
@@ -148,7 +148,7 @@ To run this project locally, you will need to add the following environment vari
 
 #### Send data to save
 
-```http
+```
   POST /api/performance-metrics-capability
 ```
 
@@ -163,19 +163,19 @@ To run this project locally, you will need to add the following environment vari
 
 #### app-perf-analytics-dashboard-client
 
-```http
+```
   GET /
 ```
 
 #### perf-analytics-lib.js
 
-```http
+```
   GET /perf-analytics-lib.js
 ```
 
 #### app-perf-analytics-data-provider-client
 
-```http
+```
   GET /data-provider-client
 ```
 
