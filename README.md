@@ -13,9 +13,7 @@ PerfAnalytics is an ecosystem which collects and criticizes web performance data
   <html lang="en">
     <head>
       <script src="https://app-perf-analytics.herokuapp.com/perf-analytics-lib.js"></script>
-      <script>
-        PerfAnalyticsLib.initializeAnalyticsLib("<DESTINATION_API_URL>");
-      </script>
+      <script>PerfAnalyticsLib.initializeAnalyticsLib("<DESTINATION_API_URL>");</script>
     </head>
   </html>
   ```
@@ -45,7 +43,7 @@ PerfAnalytics is an ecosystem which collects and criticizes web performance data
 <a href="https://www.docker.com/" title="docker"><img src="https://github.com/get-icon/geticon/raw/master/icons/docker-icon.svg" alt="docker" width="40px" height="40px"></a>
 <a href="https://git-scm.com/" title="Git"><img src="https://github.com/get-icon/geticon/raw/master/icons/git-icon.svg" alt="Git" width="40px" height="40px"></a>
 
-## Deployment
+## 🚀 Deployment
 
 ### Create an image and launch in a container via Docker
 
@@ -64,14 +62,14 @@ At the same time, there is also an automated-testing process is exist. Like depl
 **CD** : Heroku (Dockerized deployments on a Heroku container stack instance)
 
 
-## Demo
+## ✨ Demo
 
 Dashboard Client App : https://app-perf-analytics.herokuapp.com
 
 Data Provider Client App : https://app-perf-analytics.herokuapp.com/data-provider-client
 
 
-## Run 
+## ⚡Run 
 
 Clone the project
 
@@ -97,7 +95,7 @@ Build all packages
   npm run build:all-packages
 ```
 
-Start the server
+Start the server (Instead of it, The app that in the production is also usable with a few CORS changes in app.js)
 
 ```bash
   npm run start:express
@@ -115,13 +113,13 @@ Start ***app-perf-analytics-data-provider-client***  development server with hot
   cd packages/app-perf-analytics-data-provider-client && npm run start
 ```
 
-For ***perf-analytics-lib.js*** changes, just made a new production build
+For ***perf-analytics-lib.js*** changes, just generate a new production build
 
 ```bash
   cd packages/perf-analytics-lib && npm run build
 ```
 
-## Running Tests
+## 🧪 Running Tests
 
 To run tests for all packages, just run the following command
 
@@ -130,7 +128,7 @@ To run tests for all packages, just run the following command
 ```
 
 
-## Environment Variables
+## 👁 Environment Variables
 
 To run this project locally, you will need to add the following environment variables to your .env file
 
@@ -142,7 +140,7 @@ To run this project locally, you will need to add the following environment vari
 
 
 
-## API Reference
+## 🔌 API Reference
 
 #### Get data for the last half hour
 
@@ -195,7 +193,7 @@ To run this project locally, you will need to add the following environment vari
   GET /data-provider-client
 ```
 
-## Color Reference
+## 🎨 Color Reference
 
 | Color      | Hex                                                                |
 |------------| ------------------------------------------------------------------ |
@@ -205,7 +203,7 @@ To run this project locally, you will need to add the following environment vari
 | $palette-4 | ![#f27a1a](https://via.placeholder.com/10/f27a1a?text=+) #f27a1a |
 
 
-## Authors
+## 👤 Authors
 
 - [@cantanert](https://www.github.com/cantanert)
 
