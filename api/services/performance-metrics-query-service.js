@@ -50,6 +50,9 @@ const getByPostMetrics = (req, res) => {
             utcToDate: endDate,
           })
         })
+        .catch(() => {
+          badRequestResponse(res, Messages.SOMETHING_WENT_WRONG);
+        });
     }
   } else {
     badRequestResponse(res, Messages.REQUEST_BODY_CANNOT_BE_EMPTY);

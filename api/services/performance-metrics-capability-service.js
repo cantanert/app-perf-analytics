@@ -7,37 +7,41 @@ const badRequestResponse = (res, errorMessage) => {
   })
 }
 
+const isParamNullishInvalid = (params) => {
+  const paramsArray = [
+    params.FCP,
+    params.TTFB,
+    params.DOM_LOAD,
+    params.WINDOW_LOAD,
+    params.RESOURCES,
+    params.dateInfo,
+  ]
+  paramsArray.every((item) => {
+    return !(item === null || item === undefined);
+  });
+}
+
+const isParamTypesInvalid = (params) => {
+  const {FCP, TTFB, DOM_LOAD, WINDOW_LOAD, RESOURCES, dateInfo} = params;
+
+  return typeof TTFB !== "number"
+  || typeof FCP !== "number"
+  || typeof WINDOW_LOAD !== "number"
+  || typeof DOM_LOAD !== "number"
+  || typeof dateInfo !== "string"
+  || !(RESOURCES instanceof Array)
+}
+
 const sendAnalytics = (req, res) => {
   const params = typeof req.body === 'string'
     ? JSON.parse(req.body)
     : req.body;
 
   if(Object.keys(params).length){
-    const {
-      FCP,
-      TTFB,
-      DOM_LOAD,
-      WINDOW_LOAD,
-      RESOURCES,
-      dateInfo
-    } = params;
 
-    if(
-      TTFB === null || TTFB === undefined
-      || FCP === null || FCP === undefined
-      || DOM_LOAD == null || DOM_LOAD == undefined
-      || WINDOW_LOAD === null || WINDOW_LOAD === undefined
-      || RESOURCES == null || RESOURCES == undefined
-      || dateInfo === null || dateInfo === undefined
-    ){
+    if(isParamNullishInvalid(params)){
       badRequestResponse(res, Messages.PARAMS_CANNOT_BE_NULLISH);
-    } else if(
-      typeof TTFB !== "number"
-      || typeof FCP !== "number"
-      || typeof WINDOW_LOAD !== "number"
-      || typeof DOM_LOAD !== "number"
-      || typeof dateInfo !== "string"
-    ){
+    } else if (isParamTypesInvalid(params)){
       badRequestResponse(res, Messages.PARAM_TYPES_ERROR);
     } else {
       const metric = new Metric({
